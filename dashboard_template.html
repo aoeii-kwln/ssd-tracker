@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSD 価格推移ダッシュボード</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#f5f6f8; --white:#fff; --border:#e4e6ea; --text:#1a1d23; --muted:#6b7280;
+    --accent:#2563eb; --green:#16a34a; --red:#dc2626; --yellow:#d97706;
+    --shadow:0 1px 4px rgba(0,0,0,.08); --radius:10px;
+  }
+  body { background:var(--bg); color:var(--text);
+    font-family:'Hiragino Sans','Meiryo','Segoe UI',sans-serif; font-size:14px; line-height:1.6; }
+
+  header { background:var(--white); border-bottom:1px solid var(--border); padding:0 24px; height:56px;
+    display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:var(--shadow); }
+  .site-title { font-size:16px; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .site-title-icon { background:var(--accent); color:#fff; width:28px; height:28px; border-radius:6px;
+    display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .header-meta { font-size:12px; color:var(--muted); }
+
+  .container { max-width:1040px; margin:0 auto; padding:24px 16px; }
+  .section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--muted); margin-bottom:10px; }
+  .section-label small { text-transform:none; letter-spacing:0; font-weight:500; margin-left:6px; }
+  .section-gap { margin-top:36px; }
+
+  /* Pick up */
+  .pickup-list { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
+  .pickup-item { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px;
+    display:flex; align-items:center; gap:12px; box-shadow:var(--shadow); }
+  .pickup-item.up   { border-left:3px solid var(--red); }
+  .pickup-item.down { border-left:3px solid var(--green); }
+  .pickup-item.new  { border-left:3px solid var(--accent); }
+  .pickup-icon { font-size:18px; }
+  .pickup-text { flex:1; font-size:13px; font-weight:500; }
+  .pickup-date { font-size:11px; color:var(--muted); white-space:nowrap; }
+  .pickup-badge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+  .badge-up { background:#fef2f2; color:var(--red); } .badge-down { background:#f0fdf4; color:var(--green); }
+  .badge-new { background:#eff6ff; color:var(--accent); } .badge-7d { background:#fffbeb; color:var(--yellow); margin-right:-4px; }
+  .no-pickup { color:var(--muted); font-size:13px; padding:8px 0 20px; }
+
+  /* Matrix */
+  .matrix-wrap { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow-x:auto; margin-bottom:14px; }
+  table.matrix { width:100%; border-collapse:collapse; min-width:640px; }
+  .matrix th { font-size:11px; font-weight:700; color:var(--muted); text-align:left; padding:10px 12px;
+    border-bottom:1px solid var(--border); background:#fafbfc; }
+  .matrix td { padding:0; border-bottom:1px solid var(--bg); border-left:1px solid var(--bg); vertical-align:top; }
+  .matrix tr:last-child td { border-bottom:none; }
+  .matrix td.rowhead { font-size:12px; font-weight:800; padding:12px; width:150px; background:#fafbfc; border-left:none; }
+  .rowhead .hs-tag { display:block; font-size:10px; font-weight:600; color:var(--muted); }
+  .mx-cell { padding:10px 12px; cursor:pointer; min-width:150px; transition:background .12s; }
+  .mx-cell:hover { background:#f5f8ff; }
+  .mx-empty { padding:10px 12px; color:#c4c8cf; font-size:12px; }
+  .mx-min { font-size:17px; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.2; }
+  .mx-chg { font-size:11px; font-weight:700; margin-left:6px; }
+  .mx-sub { font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .mx-sub b { color:var(--text); font-weight:700; }
+  .mx-msi { font-size:11px; font-weight:700; color:var(--accent); margin-top:2px; font-variant-numeric:tabular-nums; }
+  .mx-legend { font-size:11px; color:var(--muted); margin-bottom:24px; }
+
+  .change-up { color:var(--red); } .change-down { color:var(--green); } .change-flat { color:var(--muted); }
+
+  /* Tabs */
+  .tabs { display:flex; gap:4px; margin-bottom:20px; background:var(--white); border:1px solid var(--border);
+    border-radius:8px; padding:4px; width:fit-content; box-shadow:var(--shadow); flex-wrap:wrap; }
+  .tab { padding:6px 16px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; border:none;
+    background:transparent; color:var(--muted); transition:all .15s; }
+  .tab.active { background:var(--accent); color:#fff; }
+
+  /* Cards */
+  .seg-list { display:flex; flex-direction:column; gap:20px; }
+  .seg-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; scroll-margin-top:72px; }
+  .seg-card.flash { animation:flash 1.2s ease; }
+  @keyframes flash { 0%,60% { box-shadow:0 0 0 3px rgba(37,99,235,.35); } 100% { box-shadow:var(--shadow); } }
+  .card-top { padding:16px 20px 12px; display:flex; align-items:flex-start; justify-content:space-between;
+    border-bottom:1px solid var(--border); gap:12px; }
+  .card-name-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .tag { font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; letter-spacing:.04em; }
+  .tag-sata { background:#eef2ff; color:#3730a3; } .tag-gen4 { background:#e0f2fe; color:#075985; }
+  .tag-gen5 { background:#fae8ff; color:#86198f; } .tag-hs { background:#fff7ed; color:#9a3412; }
+  .tag-ent { background:#f1f5f9; color:#334155; }
+  .tag-ps5 { background:#e0e7ff; color:#3730a3; font-size:9px; padding:1px 5px; margin-right:4px; vertical-align:1px; }
+  .card-name { font-size:18px; font-weight:800; }
+  .card-price-block { text-align:right; }
+  .card-min-label { font-size:10px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+  .card-min-price { font-size:28px; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.1; }
+  .card-change { font-size:13px; font-weight:700; margin-top:2px; }
+  .stat-row { display:flex; gap:8px; flex-wrap:wrap; padding:12px 20px 0; }
+  .stat { background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:6px 12px; min-width:130px; }
+  .stat-l { font-size:10px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+  .stat-v { font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; }
+  .stat-v.msi { color:var(--accent); }
+  .card-chart { padding:16px 20px 8px; height:220px; position:relative; }
+  .card-no-data { padding:40px 20px; text-align:center; color:var(--muted); font-size:13px; }
+
+  .models-section { border-top:1px solid var(--border); padding:14px 20px 18px; }
+  .date-selector-bar { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .date-selector-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .date-selector-select { border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:13px;
+    color:var(--text); background:var(--white); cursor:pointer; }
+  .date-selector-badge { font-size:11px; color:var(--accent); font-weight:600; }
+  .table-scroll { overflow-x:auto; }
+  .model-table { width:100%; border-collapse:collapse; font-size:13px; min-width:640px; }
+  .model-table th { text-align:left; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); padding:4px 8px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  .model-table th.right { text-align:right; }
+  .model-table td { padding:7px 8px; border-bottom:1px solid var(--bg); vertical-align:middle; }
+  .model-table tr:hover td { background:var(--bg); }
+  .model-table tr.is-msi td { background:#f5f8ff; }
+  .rank-num { font-size:11px; font-weight:800; color:var(--muted); width:32px; white-space:nowrap; }
+  .rank-1 .rank-num { color:#d97706; } .rank-2 .rank-num { color:#6b7280; } .rank-3 .rank-num { color:#92400e; }
+  .model-maker { font-size:11px; font-weight:700; color:var(--muted); white-space:nowrap; }
+  .model-maker.msi { color:var(--accent); }
+  .model-name a { color:inherit; text-decoration:none; } .model-name a:hover { color:var(--accent); text-decoration:underline; }
+  .model-price { font-weight:800; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  .model-price.msi { color:var(--accent); }                       /* MSI = blue price */
+  .model-num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--muted); font-size:12px; }
+  .model-source { font-size:11px; color:var(--muted); text-align:right; white-space:nowrap; }
+  .delta { font-size:11px; font-weight:700; margin-left:6px; }
+  .delta.sig { padding:1px 6px; border-radius:10px; }
+  .delta.sig.change-up { background:#fef2f2; } .delta.sig.change-down { background:#f0fdf4; }
+  .models-empty { color:var(--muted); font-size:12px; font-style:italic; padding:8px 0; }
+  .empty-note { color:var(--muted); font-size:12px; margin-top:12px; }
+  .unauth { color:var(--yellow); font-size:11px; margin-left:4px; }
+
+  /* Enterprise */
+  .ent-box { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:16px 20px 18px; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .chip { border:1px solid var(--border); background:var(--white); color:var(--muted); font-size:12px; font-weight:600;
+    padding:4px 12px; border-radius:20px; cursor:pointer; }
+  .chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .ent-chart { height:200px; position:relative; margin:4px 0 14px; }
+  .ent-note { font-size:11px; color:var(--muted); margin-top:10px; }
+
+  footer { text-align:center; color:var(--muted); font-size:11px; padding:28px 0 12px; }
+  @media (max-width:640px) { .card-top { flex-direction:column; } .card-price-block { text-align:left; } header { padding:0 14px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-title"><div class="site-title-icon">💾</div>SSD 価格推移ダッシュボード</div>
+  <div class="header-meta" id="last-updated">—</div>
+</header>
+
+<div class="container">
+
+  <div class="section-label">⚡ Pick Up — 直近7日の変動 / 新着
+    <small id="alert-note"></small></div>
+  <div class="pickup-list" id="pickup-list"></div>
+
+  <div class="section-label">📊 市場価格マトリクス（インターフェース × 容量）<small>セルをクリックで詳細へ</small></div>
+  <div class="matrix-wrap"><table class="matrix" id="matrix-sata"></table></div>
+  <div class="matrix-wrap"><table class="matrix" id="matrix-m2"></table></div>
+  <div class="mx-legend">各セル: 最安値（前回比）／ 中央値 ／ 最安モデルの ¥/GB ／ <span style="color:var(--accent);font-weight:700">MSI最安（最安値との差）</span>　※正規代理店価格のみ</div>
+
+  <div class="section-label">📋 セグメント別詳細</div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="SATA">SATA 2.5″</button>
+    <button class="tab" data-tab="Gen4">M.2 Gen4</button>
+    <button class="tab" data-tab="Gen5">M.2 Gen5</button>
+  </div>
+  <div class="seg-list" id="seg-list"></div>
+
+  <div class="section-label section-gap">🏢 エンタープライズ SSD <small>参考トラッキング（U.2 / U.3 / M.2 22110 / E1.S など）</small></div>
+  <div class="ent-box" id="ent-box"></div>
+
+</div>
+<footer>Source: kakaku.com（正規代理店のみ） ／ MSI 製品は価格を青字で表示 ／ <span class="tag tag-ps5">PS5</span> = 価格.com「PS5対応」表記あり（除外せず表示のみ）</footer>
+
+<script>
+// ── Embedded data (injected by inject_data.py) ────────────────────────────
+const PRICES_DATA = __PRICES_DATA__;
+
+// Must match ALERT_PCT / ALERT_PCT_7D in scraper.py
+const ALERT_PCT = 0.05, ALERT_PCT_7D = 0.10;
+const SATA_CAPS = ["240G", "480G", "960G"];
+const M2_CAPS   = ["500G", "1TB", "2TB", "4TB"];
+const M2_ROWS   = [
+  { group:"Gen4", hs:false, label:"Gen4" }, { group:"Gen4", hs:true, label:"Gen4", tag:"ヒートシンク付" },
+  { group:"Gen5", hs:false, label:"Gen5" }, { group:"Gen5", hs:true, label:"Gen5", tag:"ヒートシンク付" },
+];
+const SEG_KEYS = Object.keys(PRICES_DATA);
+const chartInstances = {};
+let currentTab = "SATA";
+let entForm = "all";
+
+// ── Helpers ──────────────────────────────────────────────────────────────
+const yen = n => n == null ? "—" : "¥" + Math.round(n).toLocaleString();
+const yen1 = n => n == null ? "—" : "¥" + n.toFixed(1);
+function escHtml(s){ return String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+const segMeta = k => PRICES_DATA[k]?.meta ?? {};
+const segLabel = k => segMeta(k).label ?? k;
+const isEnt = k => segMeta(k).kind === "enterprise";
+const consumerKeys = () => SEG_KEYS.filter(k => !isEnt(k));
+const entKeys = () => SEG_KEYS.filter(k => isEnt(k) && (PRICES_DATA[k].history||[]).length);
+function findSeg(group, cap, hs){
+  return consumerKeys().find(k => { const m = segMeta(k); return m.group===group && m.cap_label===cap && !!m.heatsink===!!hs; });
+}
+function pctChange(cur, prev){ return (cur != null && prev) ? (cur - prev) / prev : null; }
+function chgHtml(p, cls=""){
+  if (p == null) return "";
+  const c = p > 0 ? "change-up" : p < 0 ? "change-down" : "change-flat";
+  const a = p > 0 ? "▲" : p < 0 ? "▼" : "—";
+  return `<span class="${cls} ${c}">${a}${p>0?"+":""}${(p*100).toFixed(1)}%</span>`;
+}
+function prevEntryWith(history, idx, field){
+  for (let i = idx - 1; i >= 0; i--) if (history[i][field] != null) return history[i];
+  return null;
+}
+function prevModelPrice(history, entryIdx, url){
+  for (let i = entryIdx - 1; i >= 0; i--) {
+    const ms = history[i].models; if (!ms || !ms.length) continue;
+    const m = ms.find(x => x.url === url); return m ? m.price : null;   // compare with the previous run that has detail
+  }
+  return null;
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────
+(function init(){
+  document.getElementById("alert-note").textContent =
+    `（前回比 ±${ALERT_PCT*100}% ／ 7日比 ±${ALERT_PCT_7D*100}% を有意な変動として表示）`;
+  const dates = SEG_KEYS.flatMap(k => (PRICES_DATA[k].history||[]).map(h => h.date)).sort();
+  if (dates.length) document.getElementById("last-updated").textContent = `最終更新: ${dates[dates.length-1]}`;
+  document.querySelectorAll("#tabs .tab").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+  renderPickup(); renderMatrix(); renderSegments(); renderEnterprise();
+})();
+
+function setTab(tab){
+  currentTab = tab;
+  document.querySelectorAll("#tabs .tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  renderSegments();
+}
+
+// ── Pick up ──────────────────────────────────────────────────────────────
+function renderPickup(){
+  const list = document.getElementById("pickup-list");
+  const cut = new Date(); cut.setDate(cut.getDate() - 7);
+  const cutStr = cut.toISOString().slice(0,10);
+  const items = [];
+  for (const k of SEG_KEYS) {
+    for (const ev of (PRICES_DATA[k].events||[])) if (ev.date >= cutStr) items.push({...ev});
+    const h = PRICES_DATA[k].history||[]; const last = h[h.length-1];
+    for (const m of (last?.models||[]))
+      if (m.release_date && m.release_date >= cutStr)
+        items.push({type:"new_product", segment:k, date:m.release_date, maker:m.maker, name:m.name, price:m.price, url:m.url});
+  }
+  items.sort((a,b) => b.date.localeCompare(a.date));
+  if (!items.length) { list.innerHTML = `<p class="no-pickup">直近7日間に有意な価格変動・新着商品はありません</p>`; return; }
+
+  list.innerHTML = items.map(ev => {
+    const seg = escHtml(segLabel(ev.segment));
+    if (ev.type === "new_product") {
+      const nm = `${escHtml(ev.maker)} ${escHtml(ev.name)}`;
+      const nmHtml = ev.url ? `<a href="${ev.url}" target="_blank" rel="noopener" style="color:inherit">${nm}</a>` : nm;
+      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+        <span class="pickup-text"><b>${seg}</b> — ${nmHtml} ${yen(ev.price)}</span>
+        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+    }
+    if (ev.type === "new_model") {
+      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+        <span class="pickup-text"><b>${seg}</b> が初めて検出 — ${yen(ev.current)}${ev.unit||""}</span>
+        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+    }
+    const up = ev.current > ev.prev, is7 = ev.type === "price_change_7d";
+    return `<div class="pickup-item ${up?"up":"down"}"><span class="pickup-icon">${up?"📈":"📉"}</span>
+      <span class="pickup-text"><b>${seg}</b>  ${yen(ev.prev)} → ${yen(ev.current)}${ev.unit||""}</span>
+      <span class="pickup-date">${ev.date}</span>
+      ${is7 ? `<span class="pickup-badge badge-7d">7日</span>` : ""}
+      <span class="pickup-badge ${up?"badge-up":"badge-down"}">${ev.change}</span></div>`;
+  }).join("");
+}
+
+// ── Matrix ───────────────────────────────────────────────────────────────
+function cellHtml(key){
+  if (!key) return `<td class="mx-empty">—</td>`;
+  const h = PRICES_DATA[key].history || [];
+  const last = h[h.length-1];
+  if (!last || last.min_price == null) return `<td class="mx-empty">—</td>`;
+  const prev = prevEntryWith(h, h.length-1, "min_price");
+  const chg = prev ? pctChange(last.min_price, prev.min_price) : null;
+  const sig = chg != null && Math.abs(chg) >= ALERT_PCT;
+  const msi = (last.models||[]).filter(m => m.maker === "MSI").sort((a,b) => a.price-b.price)[0];
+  const msiLine = msi ? `<div class="mx-msi">MSI ${yen(msi.price)}${msi.price>last.min_price
+      ? ` (+${((msi.price/last.min_price-1)*100).toFixed(0)}%)` : " (最安)"}</div>` : "";
+  return `<td><div class="mx-cell" data-key="${escHtml(key)}">
+      <div><span class="mx-min">${yen(last.min_price)}</span>${chg!=null ? chgHtml(chg,"mx-chg") : ""}</div>
+      <div class="mx-sub">中央値 <b>${yen(last.median_price)}</b> ・ <b>${yen1(last.min_per_gb)}</b>/GB</div>
+      ${msiLine}</div></td>`;
+}
+function renderMatrix(){
+  const sata = document.getElementById("matrix-sata"), m2 = document.getElementById("matrix-m2");
+  sata.innerHTML = `<thead><tr><th></th>${SATA_CAPS.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+    <tbody><tr><td class="rowhead">SATA 2.5″</td>${SATA_CAPS.map(c => cellHtml(findSeg("SATA", c, false))).join("")}</tr></tbody>`;
+  m2.innerHTML = `<thead><tr><th></th>${M2_CAPS.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>` +
+    M2_ROWS.map(r => `<tr><td class="rowhead">M.2 ${r.label}${r.tag ? `<span class="hs-tag">${r.tag}</span>` : ""}</td>
+      ${M2_CAPS.map(c => cellHtml(findSeg(r.group, c, r.hs))).join("")}</tr>`).join("") + `</tbody>`;
+  document.querySelectorAll(".mx-cell").forEach(el => el.addEventListener("click", () => gotoSeg(el.dataset.key)));
+}
+function gotoSeg(key){
+  setTab(segMeta(key).group);
+  const el = document.getElementById("card-" + SEG_KEYS.indexOf(key));
+  if (el) { el.scrollIntoView({behavior:"smooth", block:"start"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+}
+
+// ── Segment cards ────────────────────────────────────────────────────────
+function destroyCharts(prefix){
+  Object.keys(chartInstances).filter(k => k.startsWith(prefix)).forEach(k => { try{ chartInstances[k].destroy(); }catch(e){} delete chartInstances[k]; });
+}
+function renderSegments(){
+  destroyCharts("seg-");
+  const list = document.getElementById("seg-list");
+  list.innerHTML = "";
+  if (!SEG_KEYS.length || !SEG_KEYS.some(k => (PRICES_DATA[k].history||[]).length)) {
+    list.innerHTML = `<div class="card-no-data">データがありません — scraper.py を実行してください</div>`; return;
+  }
+  const keys = consumerKeys().filter(k => segMeta(k).group === currentTab).sort((a,b) => segMeta(a).sort - segMeta(b).sort);
+  const empty = [];
+  keys.forEach(k => {
+    const data = PRICES_DATA[k], h = data.history || [];
+    if (!h.length) { empty.push(segLabel(k)); return; }
+    list.appendChild(buildCard(k, data));
+  });
+  if (empty.length) list.insertAdjacentHTML("beforeend", `<div class="empty-note">該当商品なし: ${empty.map(escHtml).join(" / ")}</div>`);
+}
+function buildCard(key, data){
+  const idx = SEG_KEYS.indexOf(key), meta = data.meta, h = data.history;
+  const last = h[h.length-1];
+  const prev = prevEntryWith(h, h.length-1, "min_price");
+  const chg = (last.min_price != null && prev) ? pctChange(last.min_price, prev.min_price) : null;
+  const msi = (last.models||[]).filter(m => m.maker==="MSI").sort((a,b)=>a.price-b.price)[0];
+  const grpTag = meta.group==="SATA" ? "tag-sata" : meta.group==="Gen4" ? "tag-gen4" : "tag-gen5";
+  const card = document.createElement("div");
+  card.className = "seg-card"; card.id = "card-" + idx;
+  card.innerHTML = `
+    <div class="card-top">
+      <div><div class="card-name-row">
+        <span class="tag ${grpTag}">${meta.group==="SATA" ? "SATA" : "M.2 " + meta.group}</span>
+        ${meta.heatsink ? `<span class="tag tag-hs">ヒートシンク付</span>` : ""}
+        <span class="card-name">${escHtml(meta.cap_label)}</span></div></div>
+      <div class="card-price-block"><div class="card-min-label">最安値</div>
+        <div class="card-min-price">${yen(last.min_price)}</div>
+        <div class="card-change">${chg!=null ? "前回比 " + chgHtml(chg) : `<span class="change-flat">前回比 —</span>`}</div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-l">中央値</div><div class="stat-v">${yen(last.median_price)}</div></div>
+      <div class="stat"><div class="stat-l">最安 ¥/GB</div><div class="stat-v">${yen1(last.min_per_gb)}</div></div>
+      <div class="stat"><div class="stat-l">中央値 ¥/GB</div><div class="stat-v">${yen1(last.median_per_gb)}</div></div>
+      <div class="stat"><div class="stat-l">対象モデル数</div><div class="stat-v">${last.n_models ?? 0}</div></div>
+      ${msi ? `<div class="stat"><div class="stat-l">MSI 最安</div><div class="stat-v msi">${yen(msi.price)}</div></div>` : ""}
+    </div>
+    <div class="card-chart"><canvas id="seg-chart-${idx}"></canvas></div>
+    <div class="models-section">
+      <div class="date-selector-bar">
+        <span class="date-selector-label">📋 モデル別価格ランキング</span>
+        <select class="date-selector-select" data-key="${escHtml(key)}">${dateOptions(h)}</select>
+        <span class="date-selector-badge">（正規代理店のみ）</span>
+      </div>
+      <div class="table-scroll" id="models-${idx}">${modelsHtml(h, null)}</div>
+    </div>`;
+  card.querySelector("select").addEventListener("change", e => {
+    document.getElementById(`models-${idx}`).innerHTML = modelsHtml(PRICES_DATA[key].history, e.target.value || null);
+  });
+  requestAnimationFrame(() => buildChart(`seg-chart-${idx}`, h));
+  return card;
+}
+function dateOptions(h){
+  const ds = h.filter(x => x.models && x.models.length).map(x => x.date).reverse();
+  if (!ds.length) return `<option value="">データなし</option>`;
+  return ds.map((d,i) => `<option value="${d}"${i===0?" selected":""}>${d}${i===0?"（最新）":""}</option>`).join("");
+}
+function modelsHtml(h, date){
+  let ei = -1;
+  if (date) ei = h.findIndex(x => x.date === date);
+  else for (let i = h.length-1; i >= 0; i--) if (h[i].models && h[i].models.length) { ei = i; break; }
+  const models = ei >= 0 ? (h[ei].models || []) : [];
+  if (!models.length) return `<div class="models-empty">この日付のデータはありません</div>`;
+  const rows = models.map((m, i) => {
+    const rank = i + 1, isMSI = m.maker === "MSI";
+    const pp = prevModelPrice(h, ei, m.url);
+    const d = pp ? pctChange(m.price, pp) : null;
+    const sig = d != null && Math.abs(d) >= ALERT_PCT;
+    const name = m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${escHtml(m.name)}</a>` : escHtml(m.name);
+    return `<tr class="${rank<=3 ? "rank-"+rank : ""} ${isMSI ? "is-msi" : ""}">
+      <td class="rank-num">RANK ${rank}</td>
+      <td class="model-maker ${isMSI?"msi":""}">${escHtml(m.maker)}</td>
+      <td class="model-name">${m.ps5 ? `<span class="tag tag-ps5">PS5</span>` : ""}${name}</td>
+      <td class="model-price ${isMSI?"msi":""}">${yen(m.price)}${d!=null && d!==0 ? chgHtml(d, "delta" + (sig?" sig":"")) : ""}</td>
+      <td class="model-num">${yen1(m.price_per_gb)}</td>
+      <td class="model-source">${escHtml(m.source || "kakaku")}</td></tr>`;
+  }).join("");
+  return `<table class="model-table"><thead><tr><th></th><th>Maker</th><th>Model</th>
+    <th class="right">Price</th><th class="right">¥/GB</th><th class="right">Source</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function buildChart(canvasId, h){
+  const ctx = document.getElementById(canvasId); if (!ctx) return;
+  const ds = [
+    { label:"最安値", data:h.map(x => x.min_price ?? null), borderColor:"#2563eb", backgroundColor:"rgba(37,99,235,.07)",
+      borderWidth:2.5, pointRadius:h.length>30?1:3, fill:true, tension:.35, spanGaps:true },
+    { label:"中央値", data:h.map(x => x.median_price ?? null), borderColor:"#9ca3af", borderWidth:1.5,
+      pointRadius:0, fill:false, tension:.35, spanGaps:true, borderDash:[4,3] },
+  ];
+  chartInstances[canvasId] = lineChart(ctx, h.map(x => x.date.slice(5)), ds, v => "¥" + v.toLocaleString());
+}
+function lineChart(ctx, labels, datasets, fmt){
+  return new Chart(ctx, { type:"line", data:{labels, datasets}, options:{
+    responsive:true, maintainAspectRatio:false, interaction:{mode:"index", intersect:false},
+    plugins:{ legend:{position:"bottom", labels:{color:"#6b7280", boxWidth:10, padding:12, font:{size:11}}},
+      tooltip:{ backgroundColor:"#fff", borderColor:"#e4e6ea", borderWidth:1, titleColor:"#1a1d23", bodyColor:"#374151", padding:10,
+        callbacks:{ label: c => c.parsed.y != null ? ` ${c.dataset.label}: ${fmt(c.parsed.y)}` : ` ${c.dataset.label}: —` } } },
+    scales:{ x:{ticks:{color:"#9ca3af", font:{size:11}, maxTicksLimit:10, maxRotation:0}, grid:{color:"#f3f4f6"}},
+             y:{ticks:{color:"#9ca3af", font:{size:11}, callback:fmt}, grid:{color:"#f3f4f6"}} } } });
+}
+
+// ── Enterprise ───────────────────────────────────────────────────────────
+function renderEnterprise(){
+  destroyCharts("ent-");
+  const box = document.getElementById("ent-box");
+  const keys = entKeys();
+  if (!keys.length) { box.innerHTML = `<div class="models-empty">エンタープライズ SSD のデータはまだありません（次回の scraper.py 実行後に表示）</div>`; return; }
+
+  const forms = [...new Set(keys.map(k => segMeta(k).form))];
+  const rows = [];
+  keys.forEach(k => {
+    const h = PRICES_DATA[k].history; const ei = h.length - 1;
+    (h[ei].models || []).forEach(m => rows.push({m, form:segMeta(k).form, dp: pctChange(m.price, prevModelPrice(h, ei, m.url))}));
+  });
+  rows.sort((a,b) => a.m.price_per_tb - b.m.price_per_tb);
+  const shown = rows.filter(r => entForm === "all" || r.form === entForm);
+
+  const chips = ["all", ...forms].map(f =>
+    `<button class="chip${entForm===f?" active":""}" data-f="${escHtml(f)}">${f==="all" ? "すべて" : escHtml(f)}</button>`).join("");
+  const body = shown.map(({m, form, dp}) => {
+    const sig = dp != null && Math.abs(dp) >= ALERT_PCT;
+    const endu = [m.dwpd != null ? `${m.dwpd} DWPD` : "", m.tbw != null ? `${m.tbw.toLocaleString()} TBW` : ""].filter(Boolean).join(" / ") || "—";
+    const isMSI = m.maker === "MSI";
+    return `<tr class="${isMSI?"is-msi":""}">
+      <td class="model-maker ${isMSI?"msi":""}">${escHtml(m.maker)}</td>
+      <td class="model-name">${m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${escHtml(m.name)}</a>` : escHtml(m.name)}</td>
+      <td class="model-num">${escHtml(form)}</td>
+      <td class="model-num">${m.capacity_gb >= 1000 ? (m.capacity_gb/1000).toFixed(2).replace(/\.?0+$/,"") + "TB" : m.capacity_gb + "GB"}</td>
+      <td class="model-num">${endu}</td>
+      <td class="model-price ${isMSI?"msi":""}">${yen(m.price)}${dp!=null && dp!==0 ? chgHtml(dp, "delta"+(sig?" sig":"")) : ""}</td>
+      <td class="model-price">${yen(m.price_per_tb)}</td>
+      <td class="model-source">${escHtml(m.source||"")}${m.unauthorized ? `<span class="unauth" title="正規代理店ホワイトリスト外の最安店">※</span>` : ""}</td></tr>`;
+  }).join("");
+
+  box.innerHTML = `
+    <div class="chips">${chips}</div>
+    <div class="ent-chart"><canvas id="ent-chart"></canvas></div>
+    <div class="table-scroll"><table class="model-table"><thead><tr>
+      <th>Maker</th><th>Model</th><th>Form</th><th class="right">容量</th><th class="right">耐久性</th>
+      <th class="right">Price</th><th class="right">¥/TB</th><th class="right">Source</th></tr></thead>
+      <tbody>${body || `<tr><td colspan="8" class="models-empty">該当なし</td></tr>`}</tbody></table></div>
+    <div class="ent-note">¥/TB の安い順。※ = 正規代理店リスト外の店舗価格（エンタープライズ品は取扱店が限られるため、正規店に無い場合のみ最安店を表示）。</div>`;
+  box.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { entForm = c.dataset.f; renderEnterprise(); }));
+
+  const labels = [...new Set(keys.flatMap(k => PRICES_DATA[k].history.map(x => x.date)))].sort();
+  const palette = ["#2563eb", "#9333ea", "#ea580c", "#0d9488", "#64748b"];
+  const ds = keys.filter(k => entForm==="all" || segMeta(k).form===entForm).map((k,i) => {
+    const byDate = Object.fromEntries(PRICES_DATA[k].history.map(x => [x.date, x.min_per_tb ?? null]));
+    return { label:segMeta(k).form + "（最安 ¥/TB）", data:labels.map(d => byDate[d] ?? null), borderColor:palette[i % palette.length],
+      borderWidth:2, pointRadius:labels.length>30?1:3, tension:.3, spanGaps:true, fill:false };
+  });
+  chartInstances["ent-chart"] = lineChart(document.getElementById("ent-chart"), labels.map(d => d.slice(5)), ds, v => "¥" + v.toLocaleString());
+}
+</script>
+</body>
+</html>

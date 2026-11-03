@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSD 価格推移ダッシュボード</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#f5f6f8; --white:#fff; --border:#e4e6ea; --text:#1a1d23; --muted:#6b7280;
+    --accent:#2563eb; --green:#16a34a; --red:#dc2626; --yellow:#d97706;
+    --shadow:0 1px 4px rgba(0,0,0,.08); --radius:10px;
+  }
+  body { background:var(--bg); color:var(--text);
+    font-family:'Hiragino Sans','Meiryo','Segoe UI',sans-serif; font-size:14px; line-height:1.6; }
+
+  header { background:var(--white); border-bottom:1px solid var(--border); padding:0 24px; height:56px;
+    display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:var(--shadow); }
+  .site-title { font-size:16px; font-weight:800; display:flex; align-items:center; gap:8px; }
+  .site-title-icon { background:var(--accent); color:#fff; width:28px; height:28px; border-radius:6px;
+    display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .header-meta { font-size:12px; color:var(--muted); }
+
+  .container { max-width:1040px; margin:0 auto; padding:24px 16px; }
+  .section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--muted); margin-bottom:10px; }
+  .section-label small { text-transform:none; letter-spacing:0; font-weight:500; margin-left:6px; }
+  .section-gap { margin-top:36px; }
+
+  /* Pick up */
+  .pickup-list { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
+  .pickup-item { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px;
+    display:flex; align-items:center; gap:12px; box-shadow:var(--shadow); }
+  .pickup-item.up   { border-left:3px solid var(--red); }
+  .pickup-item.down { border-left:3px solid var(--green); }
+  .pickup-item.new  { border-left:3px solid var(--accent); }
+  .pickup-icon { font-size:18px; }
+  .pickup-text { flex:1; font-size:13px; font-weight:500; }
+  .pickup-date { font-size:11px; color:var(--muted); white-space:nowrap; }
+  .pickup-badge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+  .badge-up { background:#fef2f2; color:var(--red); } .badge-down { background:#f0fdf4; color:var(--green); }
+  .badge-new { background:#eff6ff; color:var(--accent); } .badge-7d { background:#fffbeb; color:var(--yellow); margin-right:-4px; }
+  .no-pickup { color:var(--muted); font-size:13px; padding:8px 0 20px; }
+
+  /* Matrix */
+  .matrix-wrap { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow-x:auto; margin-bottom:14px; }
+  table.matrix { width:100%; border-collapse:collapse; min-width:640px; }
+  .matrix th { font-size:11px; font-weight:700; color:var(--muted); text-align:left; padding:10px 12px;
+    border-bottom:1px solid var(--border); background:#fafbfc; }
+  .matrix td { padding:0; border-bottom:1px solid var(--bg); border-left:1px solid var(--bg); vertical-align:top; }
+  .matrix tr:last-child td { border-bottom:none; }
+  .matrix td.rowhead { font-size:12px; font-weight:800; padding:12px; width:150px; background:#fafbfc; border-left:none; }
+  .rowhead .hs-tag { display:block; font-size:10px; font-weight:600; color:var(--muted); }
+  .mx-cell { padding:10px 12px; cursor:pointer; min-width:150px; transition:background .12s; }
+  .mx-cell:hover { background:#f5f8ff; }
+  .mx-empty { padding:10px 12px; color:#c4c8cf; font-size:12px; }
+  .mx-min { font-size:17px; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.2; }
+  .mx-chg { font-size:11px; font-weight:700; margin-left:6px; }
+  .mx-sub { font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .mx-sub b { color:var(--text); font-weight:700; }
+  .mx-msi { font-size:11px; font-weight:700; color:var(--accent); margin-top:2px; font-variant-numeric:tabular-nums; }
+  .mx-legend { font-size:11px; color:var(--muted); margin-bottom:24px; }
+
+  .change-up { color:var(--red); } .change-down { color:var(--green); } .change-flat { color:var(--muted); }
+
+  /* Tabs */
+  .tabs { display:flex; gap:4px; margin-bottom:20px; background:var(--white); border:1px solid var(--border);
+    border-radius:8px; padding:4px; width:fit-content; box-shadow:var(--shadow); flex-wrap:wrap; }
+  .tab { padding:6px 16px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; border:none;
+    background:transparent; color:var(--muted); transition:all .15s; }
+  .tab.active { background:var(--accent); color:#fff; }
+
+  /* Cards */
+  .seg-list { display:flex; flex-direction:column; gap:20px; }
+  .seg-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; scroll-margin-top:72px; }
+  .seg-card.flash { animation:flash 1.2s ease; }
+  @keyframes flash { 0%,60% { box-shadow:0 0 0 3px rgba(37,99,235,.35); } 100% { box-shadow:var(--shadow); } }
+  .card-top { padding:16px 20px 12px; display:flex; align-items:flex-start; justify-content:space-between;
+    border-bottom:1px solid var(--border); gap:12px; }
+  .card-name-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .tag { font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; letter-spacing:.04em; }
+  .tag-sata { background:#eef2ff; color:#3730a3; } .tag-gen4 { background:#e0f2fe; color:#075985; }
+  .tag-gen5 { background:#fae8ff; color:#86198f; } .tag-hs { background:#fff7ed; color:#9a3412; }
+  .tag-ent { background:#f1f5f9; color:#334155; }
+  .tag-ps5 { background:#e0e7ff; color:#3730a3; font-size:9px; padding:1px 5px; margin-right:4px; vertical-align:1px; }
+  .card-name { font-size:18px; font-weight:800; }
+  .card-price-block { text-align:right; }
+  .card-min-label { font-size:10px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+  .card-min-price { font-size:28px; font-weight:900; font-variant-numeric:tabular-nums; line-height:1.1; }
+  .card-change { font-size:13px; font-weight:700; margin-top:2px; }
+  .stat-row { display:flex; gap:8px; flex-wrap:wrap; padding:12px 20px 0; }
+  .stat { background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:6px 12px; min-width:130px; }
+  .stat-l { font-size:10px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+  .stat-v { font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; }
+  .stat-v.msi { color:var(--accent); }
+  .card-chart { padding:16px 20px 8px; height:220px; position:relative; }
+  .card-no-data { padding:40px 20px; text-align:center; color:var(--muted); font-size:13px; }
+
+  .models-section { border-top:1px solid var(--border); padding:14px 20px 18px; }
+  .date-selector-bar { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .date-selector-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .date-selector-select { border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:13px;
+    color:var(--text); background:var(--white); cursor:pointer; }
+  .date-selector-badge { font-size:11px; color:var(--accent); font-weight:600; }
+  .table-scroll { overflow-x:auto; }
+  .model-table { width:100%; border-collapse:collapse; font-size:13px; min-width:640px; }
+  .model-table th { text-align:left; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); padding:4px 8px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  .model-table th.right { text-align:right; }
+  .model-table td { padding:7px 8px; border-bottom:1px solid var(--bg); vertical-align:middle; }
+  .model-table tr:hover td { background:var(--bg); }
+  .model-table tr.is-msi td { background:#f5f8ff; }
+  .rank-num { font-size:11px; font-weight:800; color:var(--muted); width:32px; white-space:nowrap; }
+  .rank-1 .rank-num { color:#d97706; } .rank-2 .rank-num { color:#6b7280; } .rank-3 .rank-num { color:#92400e; }
+  .model-maker { font-size:11px; font-weight:700; color:var(--muted); white-space:nowrap; }
+  .model-maker.msi { color:var(--accent); }
+  .model-name a { color:inherit; text-decoration:none; } .model-name a:hover { color:var(--accent); text-decoration:underline; }
+  .model-price { font-weight:800; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  .model-price.msi { color:var(--accent); }                       /* MSI = blue price */
+  .model-num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--muted); font-size:12px; }
+  .model-source { font-size:11px; color:var(--muted); text-align:right; white-space:nowrap; }
+  .delta { font-size:11px; font-weight:700; margin-left:6px; }
+  .delta.sig { padding:1px 6px; border-radius:10px; }
+  .delta.sig.change-up { background:#fef2f2; } .delta.sig.change-down { background:#f0fdf4; }
+  .models-empty { color:var(--muted); font-size:12px; font-style:italic; padding:8px 0; }
+  .empty-note { color:var(--muted); font-size:12px; margin-top:12px; }
+  .unauth { color:var(--yellow); font-size:11px; margin-left:4px; }
+
+  /* Enterprise */
+  .ent-box { background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:16px 20px 18px; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .chip { border:1px solid var(--border); background:var(--white); color:var(--muted); font-size:12px; font-weight:600;
+    padding:4px 12px; border-radius:20px; cursor:pointer; }
+  .chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .ent-chart { height:200px; position:relative; margin:4px 0 14px; }
+  .ent-note { font-size:11px; color:var(--muted); margin-top:10px; }
+
+  footer { text-align:center; color:var(--muted); font-size:11px; padding:28px 0 12px; }
+  @media (max-width:640px) { .card-top { flex-direction:column; } .card-price-block { text-align:left; } header { padding:0 14px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-title"><div class="site-title-icon">💾</div>SSD 価格推移ダッシュボード</div>
+  <div class="header-meta" id="last-updated">—</div>
+</header>
+
+<div class="container">
+
+  <div class="section-label">⚡ Pick Up — 直近7日の変動 / 新着
+    <small id="alert-note"></small></div>
+  <div class="pickup-list" id="pickup-list"></div>
+
+  <div class="section-label">📊 市場価格マトリクス（インターフェース × 容量）<small>セルをクリックで詳細へ</small></div>
+  <div class="matrix-wrap"><table class="matrix" id="matrix-sata"></table></div>
+  <div class="matrix-wrap"><table class="matrix" id="matrix-m2"></table></div>
+  <div class="mx-legend">各セル: 最安値（前回比）／ 中央値 ／ 最安モデルの ¥/GB ／ <span style="color:var(--accent);font-weight:700">MSI最安（最安値との差）</span>　※正規代理店価格のみ</div>
+
+  <div class="section-label">📋 セグメント別詳細</div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="SATA">SATA 2.5″</button>
+    <button class="tab" data-tab="Gen4">M.2 Gen4</button>
+    <button class="tab" data-tab="Gen5">M.2 Gen5</button>
+  </div>
+  <div class="seg-list" id="seg-list"></div>
+
+  <div class="section-label section-gap">🏢 エンタープライズ SSD <small>参考トラッキング（U.2 / U.3 / M.2 22110 / E1.S など）</small></div>
+  <div class="ent-box" id="ent-box"></div>
+
+</div>
+<footer>Source: kakaku.com（正規代理店のみ） ／ MSI 製品は価格を青字で表示 ／ <span class="tag tag-ps5">PS5</span> = 価格.com「PS5対応」表記あり（除外せず表示のみ）</footer>
+
+<script>
+// ── Embedded data (injected by inject_data.py) ────────────────────────────
+const PRICES_DATA = {"SATA 240G":{"meta":{"kind":"consumer","group":"SATA","cap_label":"240G","cap_gb":240,"heatsink":false,"label":"SATA 240G","sort":1},"history":[{"date":"2026-11-03 00:08","min_price":4979,"median_price":12894,"min_per_gb":20.75,"median_per_gb":53.73,"n_models":5,"models":[{"maker":"MSI","name":"SPATIUM S270 SATA 2.5 240GB","price":4979,"price_per_gb":20.75,"capacity_gb":240,"heatsink":false,"url":"https://kakaku.com/item/K0001511032/","source":"パソコン工房","release_date":""},{"maker":"Crucial","name":"BX500 CT240BX500SSD1","price":9900,"price_per_gb":41.25,"capacity_gb":240,"heatsink":false,"url":"https://kakaku.com/item/K0001086728/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"GX1 T253X1240G0C101 [ブラック]","price":12894,"price_per_gb":53.73,"capacity_gb":240,"heatsink":false,"url":"https://kakaku.com/item/K0001283990/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green WDS240G3G0A","price":17800,"price_per_gb":74.17,"capacity_gb":240,"heatsink":false,"url":"https://kakaku.com/item/K0001457741/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"SDSSDX-240G-G25","price":70500,"price_per_gb":293.75,"capacity_gb":240,"heatsink":false,"url":"https://kakaku.com/item/K0000350090/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"SATA 480G":{"meta":{"kind":"consumer","group":"SATA","cap_label":"480G","cap_gb":480,"heatsink":false,"label":"SATA 480G","sort":2},"history":[{"date":"2026-11-03 00:08","min_price":11450,"median_price":15980,"min_per_gb":23.85,"median_per_gb":33.29,"n_models":9,"models":[{"maker":"MSI","name":"SPATIUM S270 SATA 2.5 480GB","price":11450,"price_per_gb":23.85,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001650235/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK480S/R","price":12980,"price_per_gb":27.04,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001805590/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK480S/J [ブラック]","price":14480,"price_per_gb":30.17,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001399071/","source":"パソコン工房","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA LTC10Z480GG8","price":15253,"price_per_gb":31.78,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001426771/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK480S/N","price":15980,"price_per_gb":33.29,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001421819/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"ウルトラ II SSD SDSSDHII-480G-J26","price":19800,"price_per_gb":41.25,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0000845981/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green WDS480G3G0A","price":21890,"price_per_gb":45.6,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001457740/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green WDS480G2G0A","price":24766,"price_per_gb":51.6,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0001144137/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Z410 SD8SBBU-480G-1122","price":36859,"price_per_gb":76.79,"capacity_gb":480,"heatsink":false,"url":"https://kakaku.com/item/K0000876167/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"SATA 960G":{"meta":{"kind":"consumer","group":"SATA","cap_label":"960G","cap_gb":960,"heatsink":false,"label":"SATA 960G","sort":3},"history":[{"date":"2026-11-03 00:08","min_price":17979,"median_price":22980,"min_per_gb":18.73,"median_per_gb":23.94,"n_models":5,"models":[{"maker":"MSI","name":"SPATIUM S270 SATA 2.5 960GB","price":17979,"price_per_gb":18.73,"capacity_gb":960,"heatsink":false,"url":"https://kakaku.com/item/K0001776327/","source":"パソコン工房","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK960S/R","price":21980,"price_per_gb":22.9,"capacity_gb":960,"heatsink":false,"url":"https://kakaku.com/item/K0001801868/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK960S/J [ブラック]","price":22980,"price_per_gb":23.94,"capacity_gb":960,"heatsink":false,"url":"https://kakaku.com/item/K0001399072/","source":"ドスパラ","release_date":""},{"maker":"Kioxia","name":"EXCERIA SATA SSD-CK960S/N","price":28499,"price_per_gb":29.69,"capacity_gb":960,"heatsink":false,"url":"https://kakaku.com/item/K0001686763/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"Slim S55 SP960GBSS3S55S25 [ブラック]","price":40741,"price_per_gb":42.44,"capacity_gb":960,"heatsink":false,"url":"https://kakaku.com/item/K0000848240/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"Gen4 500G":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"500G","cap_gb":500,"heatsink":false,"sort":4,"label":"M.2 Gen4 500G"},"history":[{"date":"2026-11-03 00:08","min_price":15480,"median_price":20800,"min_per_gb":30.96,"median_per_gb":41.6,"n_models":11,"models":[{"maker":"MSI","name":"SPATIUM M452 PCIe 4.0 NVMe M.2 500GB","price":15480,"price_per_gb":30.96,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001793464/","source":"ドスパラ","release_date":""},{"maker":"Team","name":"T-FORCE G50 TM8FFE512G0C129","price":16880,"price_per_gb":32.97,"capacity_gb":512,"heatsink":false,"url":"https://kakaku.com/item/K0001780172/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"Silicon Power","name":"PCIe Gen 4x4 UD90 SP500GBP44UD9005","price":16980,"price_per_gb":33.96,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001702395/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green SN3000 NVMe SSD WDS500G4G0E","price":18277,"price_per_gb":36.55,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001708141/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"PLAY X LNMPLYX512G-RNNNG","price":18480,"price_per_gb":36.09,"capacity_gb":512,"heatsink":false,"url":"https://kakaku.com/item/K0001778650/","source":"ドスパラ","release_date":""},{"maker":"WD","name":"WD Blue SN5100 NVMe WDS500G5B0E","price":20800,"price_per_gb":41.6,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001707602/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX 7100 NVMe SSD SDSP71500GAN-000E0","price":21430,"price_per_gb":42.86,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001803484/","source":"Joshin","release_date":""},{"maker":"Team","name":"MP44L TM8FPK500G0C101","price":22619,"price_per_gb":45.24,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001642917/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN7100 NVMe SSD WDS500G4X0E","price":23980,"price_per_gb":47.96,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001673418/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN580 NVMe WDS500G3B0E","price":43217,"price_per_gb":86.43,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001552204/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN770 NVMe WDS500G3X0E","price":52404,"price_per_gb":104.81,"capacity_gb":500,"heatsink":false,"url":"https://kakaku.com/item/K0001424273/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"Gen4 500G HS":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"500G","cap_gb":500,"heatsink":true,"sort":5,"label":"M.2 Gen4 500G（ヒートシンク付）"},"history":[],"events":[]},"Gen4 1TB":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"1TB","cap_gb":1000,"heatsink":false,"sort":6,"label":"M.2 Gen4 1TB"},"history":[{"date":"2026-11-03 00:08","min_price":24980,"median_price":34990,"min_per_gb":24.98,"median_per_gb":34.99,"n_models":34,"models":[{"maker":"MSI","name":"SPATIUM M450 PCIe 4.0 NVMe M.2 1TB V1","price":24980,"price_per_gb":24.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001678770/","source":"ドスパラ","release_date":""},{"maker":"Lexar","name":"NQ790 LNQ790X001T-RNNNG","price":25980,"price_per_gb":25.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001785780/","source":"TSUKUMO","release_date":"","ps5":true},{"maker":"Silicon Power","name":"SJ01KGBP44UD9N05J5","price":26980,"price_per_gb":26.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001766825/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"PCIe Gen 4x4 US75 SP01KGBP44US7505","price":28280,"price_per_gb":28.28,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001724857/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA PLUS G3 SSD-CK1.0N4PLG3J [ブラック]","price":29590,"price_per_gb":29.59,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001579414/","source":"ドスパラ","release_date":""},{"maker":"Team","name":"MP44Q TM8FFD001T0C101","price":29880,"price_per_gb":29.88,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001629291/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK1.0N4B/J [ブラック]","price":29980,"price_per_gb":29.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001724150/","source":"ドスパラ","release_date":""},{"maker":"WD","name":"WD Blue SN5100 NVMe WDS100T5B0E","price":31000,"price_per_gb":31.0,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001707603/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green SN3000 NVMe SSD WDS100T4G0E","price":32831,"price_per_gb":32.83,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001708142/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"NM790 LNM790X001T-RNNNG","price":32905,"price_per_gb":32.91,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001537212/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK1.0N4B/R","price":32980,"price_per_gb":32.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001801866/","source":"Amazon.co.jp","release_date":""},{"maker":"MSI","name":"SPATIUM M470 PRO PCIe 4.0 NVMe M.2 1TB","price":32980,"price_per_gb":32.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001769291/","source":"パソコン工房","release_date":""},{"maker":"Team","name":"T-FORCE G50 TM8FFE001T0C129","price":33468,"price_per_gb":33.47,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001648253/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN5000 NVMe WDS100T4B0E","price":34500,"price_per_gb":34.5,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001637821/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"MP44 TM8FPW001T0C101","price":34816,"price_per_gb":34.82,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001568731/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P1T0B-IT","price":34980,"price_per_gb":34.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001504087/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P1T0B-IT/EC","price":34980,"price_per_gb":34.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001504088/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS100T2X0E","price":35000,"price_per_gb":35.0,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001467994/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"T-CREATE CLASSIC C47 TM8FFC001T0C129","price":36146,"price_per_gb":36.15,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001648257/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN770 NVMe WDS100T3X0E","price":37698,"price_per_gb":37.7,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001424274/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"PLAY X LNMPLYX001T-RNNNG","price":37980,"price_per_gb":37.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001778651/","source":"ドスパラ","release_date":""},{"maker":"MSI","name":"SPATIUM M461 PCIe 4.0 NVMe M.2 1TB","price":38471,"price_per_gb":38.47,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001522135/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX 7100 NVMe SSD SDSP71100TAN-000E0","price":39980,"price_per_gb":39.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001803485/","source":"Joshin","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK1.0N4B/N","price":39990,"price_per_gb":39.99,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001719360/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"990 MZ-V9V1T0B-IT","price":40980,"price_per_gb":40.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001793787/","source":"Joshin","release_date":""},{"maker":"WD","name":"WD Blue SN580 NVMe WDS100T3B0E","price":44500,"price_per_gb":44.5,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001552205/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81100TAN-000E0","price":48420,"price_per_gb":48.42,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001803480/","source":"パソコン工房","release_date":"","ps5":true},{"maker":"Crucial","name":"T500 CT1000T500SSD8JP","price":48452,"price_per_gb":48.45,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001588761/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"T-CREATE CLASSIC TM8FPM001T0C329","price":49800,"price_per_gb":49.8,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001554856/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81100TAH-000E0","price":51700,"price_per_gb":51.7,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001803476/","source":"ドスパラ","release_date":"","ps5":true},{"maker":"WD","name":"WD_Black SN7100 NVMe SSD WDS100T4X0E","price":52980,"price_per_gb":52.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001673419/","source":"Joshin","release_date":""},{"maker":"WD","name":"WD_Black SN850P NVMe SSD for PS5 Consoles WDBBYV0010BNC-WRSN","price":55480,"price_per_gb":55.48,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001551011/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"WD","name":"WD_Black SN850 NVMe WDS100T1X0E-00AFY0","price":65057,"price_per_gb":65.06,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001309862/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"T-FORCE G70 PRO TM8FFH001T0C129","price":67452,"price_per_gb":67.45,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001648255/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"Gen4 1TB HS":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"1TB","cap_gb":1000,"heatsink":true,"sort":7,"label":"M.2 Gen4 1TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":34800,"median_price":35140,"min_per_gb":34.8,"median_per_gb":35.14,"n_models":4,"models":[{"maker":"Samsung","name":"980 PRO with Heatsink MZ-V8P1T0C/IT","price":34800,"price_per_gb":34.8,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001394133/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"NM790 with Heatsink LNM790X001T-RN9NG","price":34800,"price_per_gb":34.8,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001590490/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS100T2XHE","price":35480,"price_per_gb":35.48,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001472482/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"Samsung","name":"990 PRO with Heatsink MZ-V9P1T0G-IT","price":50980,"price_per_gb":50.98,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001546439/","source":"Joshin","release_date":""}]}],"events":[]},"Gen4 2TB":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"2TB","cap_gb":2000,"heatsink":false,"sort":8,"label":"M.2 Gen4 2TB"},"history":[{"date":"2026-11-03 00:08","min_price":47980,"median_price":63780,"min_per_gb":23.99,"median_per_gb":31.89,"n_models":28,"models":[{"maker":"Silicon Power","name":"SJ02KGBP44UD9N05J5","price":47980,"price_per_gb":23.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001764239/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Green SN3000 NVMe SSD WDS200T4G0E","price":49635,"price_per_gb":24.82,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001708143/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"PCIe Gen 4x4 US75 SP02KGBP44US7505","price":51980,"price_per_gb":25.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001724858/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN5100 NVMe WDS200T5B0E","price":52980,"price_per_gb":26.49,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001707604/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"T-FORCE G50 TM8FFE002T0C129","price":55880,"price_per_gb":27.94,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001648254/","source":"Amazon.co.jp","release_date":""},{"maker":"Team","name":"MP44Q TM8FFD002T0C101","price":56030,"price_per_gb":28.02,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001629290/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"NQ790 LNQ790X002T-RNNNG","price":57990,"price_per_gb":29.0,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001785781/","source":"ドスパラ","release_date":"","ps5":true},{"maker":"Team","name":"MP44 TM8FPW002T0C101","price":58497,"price_per_gb":29.25,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001568732/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN5000 NVMe WDS200T4B0E","price":59000,"price_per_gb":29.5,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001637822/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA PLUS G3 SSD-CK2.0N4PLG3J [ブラック]","price":59980,"price_per_gb":29.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001579415/","source":"ドスパラ","release_date":""},{"maker":"Lexar","name":"NM790 LNM790X002T-RNNNG","price":61780,"price_per_gb":30.89,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001537213/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN580 NVMe WDS200T3B0E","price":63392,"price_per_gb":31.7,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001552206/","source":"Amazon.co.jp","release_date":""},{"maker":"Crucial","name":"P3 Plus CT2000P3PSSD8","price":63489,"price_per_gb":31.74,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001585550/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"PCIe Gen 4x4 US70 SP02KGBP44US7005","price":63581,"price_per_gb":31.79,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001525787/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK2.0N4B/J [ブラック]","price":63980,"price_per_gb":31.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001724151/","source":"Joshin","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK2.0N4B/R","price":64980,"price_per_gb":32.49,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001801867/","source":"Amazon.co.jp","release_date":""},{"maker":"MSI","name":"SPATIUM M480 PRO PCIe 4.0 NVMe M.2 2TB","price":65448,"price_per_gb":32.72,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001559684/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS200T2X0E","price":66180,"price_per_gb":33.09,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001467995/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA BASIC SSD-CK2.0N4B/N","price":68280,"price_per_gb":34.14,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001719361/","source":"Joshin","release_date":""},{"maker":"Team","name":"T-FORCE G70 PRO TM8FFH002T0C129","price":69953,"price_per_gb":34.98,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001644356/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN770 NVMe WDS200T3X0E","price":71000,"price_per_gb":35.5,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001424275/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX 7100 NVMe SSD SDSP71200TAN-000E0","price":79980,"price_per_gb":39.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001803486/","source":"Joshin","release_date":""},{"maker":"Samsung","name":"990 MZ-V9V2T0B-IT","price":80980,"price_per_gb":40.49,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001793789/","source":"Joshin","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P2T0B-IT","price":84800,"price_per_gb":42.4,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001504089/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"WD","name":"WD_Black SN850 NVMe WDS200T1X0E-00AFY0","price":85177,"price_per_gb":42.59,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001309863/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P2T0B-IT/EC","price":89015,"price_per_gb":44.51,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001504090/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81200TAN-000E0","price":92741,"price_per_gb":46.37,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001803481/","source":"ドスパラ","release_date":"","ps5":true},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81200TAH-000E0","price":98120,"price_per_gb":49.06,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001803477/","source":"ドスパラ","release_date":"","ps5":true}]}],"events":[]},"Gen4 2TB HS":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"2TB","cap_gb":2000,"heatsink":true,"sort":9,"label":"M.2 Gen4 2TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":64825,"median_price":69902,"min_per_gb":32.41,"median_per_gb":34.95,"n_models":2,"models":[{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS200T2XHE","price":64825,"price_per_gb":32.41,"capacity_gb":2000,"heatsink":true,"url":"https://kakaku.com/item/K0001472483/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"Samsung","name":"990 PRO with Heatsink MZ-V9P2T0G-IT","price":74980,"price_per_gb":37.49,"capacity_gb":2000,"heatsink":true,"url":"https://kakaku.com/item/K0001546441/","source":"Joshin","release_date":""}]}],"events":[]},"Gen4 4TB":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"4TB","cap_gb":4000,"heatsink":false,"sort":10,"label":"M.2 Gen4 4TB"},"history":[{"date":"2026-11-03 00:08","min_price":88254,"median_price":140881,"min_per_gb":22.06,"median_per_gb":35.22,"n_models":13,"models":[{"maker":"Team","name":"MP44Q TM8FFD004T0C101","price":88254,"price_per_gb":22.06,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001629289/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"SJ04KGBP44UD9N05J5","price":88980,"price_per_gb":22.25,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001764240/","source":"Amazon.co.jp","release_date":""},{"maker":"Silicon Power","name":"PCIe Gen 4x4 US75 SP04KGBP44US7505","price":91980,"price_per_gb":23.0,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001724859/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN5100 NVMe WDS400T5B0E","price":93800,"price_per_gb":23.45,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001707605/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN7100 NVMe SSD WDS400T4X0E","price":99980,"price_per_gb":25.0,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001688296/","source":"パソコン工房","release_date":""},{"maker":"Team","name":"MP44 TM8FPW004T0C101","price":105186,"price_per_gb":26.3,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001568733/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS400T2X0E","price":140881,"price_per_gb":35.22,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001467996/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX 7100 NVMe SSD SDSP71400TAN-000E0","price":155970,"price_per_gb":38.99,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001803487/","source":"Joshin","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P4T0B-IT","price":164800,"price_per_gb":41.2,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001570058/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"990 PRO MZ-V9P4T0B-IT/EC","price":168667,"price_per_gb":42.17,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001570059/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD Blue SN5000 NVMe WDS400T4B0E","price":178880,"price_per_gb":44.72,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001637823/","source":"ソフマップ.com","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81400TAN-000E0","price":179170,"price_per_gb":44.79,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001803482/","source":"パソコン工房","release_date":"","ps5":true},{"maker":"SanDisk","name":"Optimus GX PRO 850X NVMe SSD SDSP81400TAH-000E0","price":182820,"price_per_gb":45.7,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001803478/","source":"ドスパラ","release_date":"","ps5":true}]}],"events":[]},"Gen4 4TB HS":{"meta":{"kind":"consumer","group":"Gen4","cap_label":"4TB","cap_gb":4000,"heatsink":true,"sort":11,"label":"M.2 Gen4 4TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":89311,"median_price":138990,"min_per_gb":22.33,"median_per_gb":34.75,"n_models":4,"models":[{"maker":"Lexar","name":"NM790 with Heatsink LNM790X004T-RN9NG","price":89311,"price_per_gb":22.33,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001574487/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN850X NVMe SSD WDS400T2XHE","price":105000,"price_per_gb":26.25,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001648520/","source":"Amazon.co.jp","release_date":"","ps5":true},{"maker":"Samsung","name":"990 PRO with Heatsink MZ-V9P4T0G-IT","price":172980,"price_per_gb":43.24,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001570060/","source":"Joshin","release_date":""},{"maker":"Samsung","name":"990 PRO with Heatsink MZ-V9P4T0G-IT/EC","price":174727,"price_per_gb":43.68,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001570061/","source":"Amazon.co.jp","release_date":""}]}],"events":[]},"Gen5 500G":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"500G","cap_gb":500,"heatsink":false,"sort":12,"label":"M.2 Gen5 500G"},"history":[],"events":[]},"Gen5 500G HS":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"500G","cap_gb":500,"heatsink":true,"sort":13,"label":"M.2 Gen5 500G（ヒートシンク付）"},"history":[],"events":[]},"Gen5 1TB":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"1TB","cap_gb":1000,"heatsink":false,"sort":14,"label":"M.2 Gen5 1TB"},"history":[{"date":"2026-11-03 00:08","min_price":34980,"median_price":44700,"min_per_gb":34.98,"median_per_gb":44.7,"n_models":13,"models":[{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK1.0N5G3/J [ブラック]","price":34980,"price_per_gb":34.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001768655/","source":"ドスパラ","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK1.0N5G3/R","price":36980,"price_per_gb":36.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001790751/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA PLUS G4 SSD-CK1.0N5PLG4J [ブラック]","price":37980,"price_per_gb":37.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001672715/","source":"ドスパラ","release_date":""},{"maker":"MSI","name":"SPATIUM M560 PCIe 5.0 NVMe M.2 1TB","price":37980,"price_per_gb":37.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001678771/","source":"ドスパラ","release_date":""},{"maker":"Lexar","name":"NM990 LNM990X001T-RNNNG","price":38500,"price_per_gb":38.5,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001793065/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK1.0N5G3/N","price":39800,"price_per_gb":39.8,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001723787/","source":"Amazon.co.jp","release_date":""},{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS100T1X0M","price":44700,"price_per_gb":44.7,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001694020/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"Professional NM1090 PRO LNM109P001T-RNNNG","price":47700,"price_per_gb":47.7,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001793068/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"9100 PRO MZ-VAP1T0B-IT","price":48672,"price_per_gb":48.67,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001681632/","source":"TSUKUMO","release_date":""},{"maker":"Team","name":"T-FORCE Z540 TM8FF1001T0C129","price":52864,"price_per_gb":52.86,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001596270/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82100TAN-000E0","price":53579,"price_per_gb":53.58,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001803473/","source":"Joshin","release_date":""},{"maker":"Crucial","name":"T710 CT1000T710SSD8-JP","price":54200,"price_per_gb":54.2,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001700247/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82100TAH-000E0","price":56980,"price_per_gb":56.98,"capacity_gb":1000,"heatsink":false,"url":"https://kakaku.com/item/K0001803471/","source":"ドスパラ","release_date":""}]}],"events":[]},"Gen5 1TB HS":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"1TB","cap_gb":1000,"heatsink":true,"sort":15,"label":"M.2 Gen5 1TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":40180,"median_price":45000,"min_per_gb":40.18,"median_per_gb":45.0,"n_models":3,"models":[{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS100T1XHM","price":40180,"price_per_gb":40.18,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001722178/","source":"Joshin","release_date":""},{"maker":"Crucial","name":"T700 CT1000T700SSD5JP","price":45000,"price_per_gb":45.0,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001544080/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"9100 PRO with Heatsink MZ-VAP1T0C-IT","price":53980,"price_per_gb":53.98,"capacity_gb":1000,"heatsink":true,"url":"https://kakaku.com/item/K0001681635/","source":"Joshin","release_date":"","ps5":true}]}],"events":[]},"Gen5 2TB":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"2TB","cap_gb":2000,"heatsink":false,"sort":16,"label":"M.2 Gen5 2TB"},"history":[{"date":"2026-11-03 00:08","min_price":53980,"median_price":69740,"min_per_gb":26.99,"median_per_gb":34.87,"n_models":12,"models":[{"maker":"Lexar","name":"NM990 LNM990X002T-RNNNG","price":53980,"price_per_gb":26.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001793066/","source":"ドスパラ","release_date":""},{"maker":"MSI","name":"SPATIUM M560 PCIe 5.0 NVMe M.2 2TB","price":58800,"price_per_gb":29.4,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001683196/","source":"ドスパラ","release_date":""},{"maker":"Team","name":"T-FORCE GA PRO TM8FFJ002T0C129","price":59932,"price_per_gb":29.97,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001770383/","source":"Amazon.co.jp","release_date":""},{"maker":"Lexar","name":"Professional NM1090 PRO LNM109P002T-RNNNG","price":68800,"price_per_gb":34.4,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001793069/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK2.0N5G3/R","price":68980,"price_per_gb":34.49,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001790752/","source":"Amazon.co.jp","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK2.0N5G3/J [ブラック]","price":69500,"price_per_gb":34.75,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001768656/","source":"ソフマップ.com","release_date":""},{"maker":"Kioxia","name":"EXCERIA PLUS G4 SSD-CK2.0N5PLG4J [ブラック]","price":69980,"price_per_gb":34.99,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001672716/","source":"ドスパラ","release_date":""},{"maker":"Kioxia","name":"EXCERIA PLUS G4 SSD-CK2.0N5PLG4N","price":78780,"price_per_gb":39.39,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001677649/","source":"Joshin","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82200TAN-000E0","price":91102,"price_per_gb":45.55,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001803474/","source":"TSUKUMO","release_date":""},{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS200T1X0M","price":91440,"price_per_gb":45.72,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001694021/","source":"ソフマップ.com","release_date":""},{"maker":"Samsung","name":"9100 PRO MZ-VAP2T0B-IT","price":102980,"price_per_gb":51.49,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001681633/","source":"Joshin","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82200TAH-000E0","price":105120,"price_per_gb":52.56,"capacity_gb":2000,"heatsink":false,"url":"https://kakaku.com/item/K0001806684/","source":"パソコン工房","release_date":""}]}],"events":[]},"Gen5 2TB HS":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"2TB","cap_gb":2000,"heatsink":true,"sort":17,"label":"M.2 Gen5 2TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":69980,"median_price":88980,"min_per_gb":34.99,"median_per_gb":44.49,"n_models":2,"models":[{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS200T1XHM","price":69980,"price_per_gb":34.99,"capacity_gb":2000,"heatsink":true,"url":"https://kakaku.com/item/K0001722179/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"9100 PRO with Heatsink MZ-VAP2T0C-IT","price":107980,"price_per_gb":53.99,"capacity_gb":2000,"heatsink":true,"url":"https://kakaku.com/item/K0001681636/","source":"Joshin","release_date":"","ps5":true}]}],"events":[]},"Gen5 4TB":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"4TB","cap_gb":4000,"heatsink":false,"sort":18,"label":"M.2 Gen5 4TB"},"history":[{"date":"2026-11-03 00:08","min_price":89980,"median_price":197520,"min_per_gb":22.5,"median_per_gb":49.38,"n_models":8,"models":[{"maker":"Lexar","name":"NM990 LNM990X004T-RNNNG","price":89980,"price_per_gb":22.5,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001793067/","source":"ドスパラ","release_date":""},{"maker":"Lexar","name":"Professional NM1090 PRO LNM109P004T-RNNNG","price":92980,"price_per_gb":23.25,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001793070/","source":"ドスパラ","release_date":""},{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS400T1X0M","price":139980,"price_per_gb":34.99,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001694022/","source":"Amazon.co.jp","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82400TAN-000E0","price":193520,"price_per_gb":48.38,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001803475/","source":"Joshin","release_date":""},{"maker":"SanDisk","name":"Optimus GX PRO 8100 NVMe SSD SDSP82400TAH-000E0","price":201520,"price_per_gb":50.38,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001803472/","source":"ドスパラ","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK4.0N5G3/J [ブラック]","price":203980,"price_per_gb":50.99,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001791915/","source":"ドスパラ","release_date":""},{"maker":"Kioxia","name":"EXCERIA G3 SSD-CK4.0N5G3/R","price":204980,"price_per_gb":51.24,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001790750/","source":"Amazon.co.jp","release_date":""},{"maker":"Samsung","name":"9100 PRO MZ-VAP4T0B-IT","price":206980,"price_per_gb":51.74,"capacity_gb":4000,"heatsink":false,"url":"https://kakaku.com/item/K0001681634/","source":"Joshin","release_date":""}]}],"events":[]},"Gen5 4TB HS":{"meta":{"kind":"consumer","group":"Gen5","cap_label":"4TB","cap_gb":4000,"heatsink":true,"sort":19,"label":"M.2 Gen5 4TB（ヒートシンク付）"},"history":[{"date":"2026-11-03 00:08","min_price":180070,"median_price":196525,"min_per_gb":45.02,"median_per_gb":49.13,"n_models":2,"models":[{"maker":"WD","name":"WD_Black SN8100 NVMe SSD WDS400T1XHM","price":180070,"price_per_gb":45.02,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001722180/","source":"ヨドバシ.com","release_date":""},{"maker":"Samsung","name":"9100 PRO with Heatsink MZ-VAP4T0C-IT","price":212980,"price_per_gb":53.24,"capacity_gb":4000,"heatsink":true,"url":"https://kakaku.com/item/K0001681637/","source":"Joshin","release_date":"","ps5":true}]}],"events":[]},"ENT U.2 / U.3":{"meta":{"kind":"enterprise","group":"ENT","form":"U.2 / U.3","label":"エンタープライズ U.2 / U.3","sort":1000},"history":[{"date":"2026-11-03 00:08","min_price":32055,"median_price":92355,"min_per_gb":35.91,"median_per_gb":38.66,"n_models":4,"min_per_tb":35912,"models":[{"maker":"Solidigm","name":"D7-P5620 SSDPF2KE032T1N1","price":114920,"price_per_gb":35.91,"capacity_gb":3200.0,"heatsink":false,"url":"https://kakaku.com/item/K0001463330/","source":"Amazon.co.jp","release_date":"","price_per_tb":35912,"form":"U.2 / U.3"},{"maker":"Solidigm","name":"D7-P5620 SSDPF2KE064T1N1","price":238339,"price_per_gb":37.24,"capacity_gb":6400.0,"heatsink":false,"url":"https://kakaku.com/item/K0001463331/","source":"Amazon.co.jp","release_date":"","price_per_tb":37240,"form":"U.2 / U.3"},{"maker":"Intel","name":"DC P3600 Series SSDPE2ME800G401","price":32055,"price_per_gb":40.07,"capacity_gb":800.0,"heatsink":false,"url":"https://kakaku.com/item/K0000886966/","source":"Amazon.co.jp","release_date":"","price_per_tb":40069,"form":"U.2 / U.3"},{"maker":"Intel","name":"DC P3600 Series SSDPE2ME012T401","price":69790,"price_per_gb":58.16,"capacity_gb":1200.0,"heatsink":false,"url":"https://kakaku.com/item/K0000877096/","source":"Amazon.co.jp","release_date":"","price_per_tb":58158,"form":"U.2 / U.3"}]}],"events":[]},"ENT SATA 2.5インチ":{"meta":{"kind":"enterprise","group":"ENT","form":"SATA 2.5インチ","label":"エンタープライズ SATA 2.5インチ","sort":1003},"history":[{"date":"2026-11-03 00:08","min_price":101610,"median_price":283688,"min_per_gb":26.46,"median_per_gb":117.42,"n_models":10,"min_per_tb":26461,"models":[{"maker":"Solidigm","name":"D3-S4510 SSDSC2KB038T801","price":101610,"price_per_gb":26.46,"capacity_gb":3840,"heatsink":false,"url":"https://kakaku.com/item/K0001083154/","source":"Amazon.co.jp","release_date":"","price_per_tb":26461,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4520 SSDSC2KB038TZ01","price":113245,"price_per_gb":29.49,"capacity_gb":3840,"heatsink":false,"url":"https://kakaku.com/item/K0001402461/","source":"Amazon.co.jp","release_date":"","price_per_tb":29491,"form":"SATA 2.5インチ"},{"maker":"Kingston","name":"Data Center DC600M SEDC600M/7680G","price":623740,"price_per_gb":81.22,"capacity_gb":7680,"heatsink":false,"url":"https://kakaku.com/item/K0001541100/","source":"Amazon.co.jp","release_date":"","price_per_tb":81216,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4520 SSDSC2KB038TZ1Z","price":321189,"price_per_gb":83.64,"capacity_gb":3840,"heatsink":false,"url":"https://kakaku.com/item/K0001662712/","source":"Amazon.co.jp","release_date":"","price_per_tb":83643,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4610 SSDSC2KG019T801","price":213282,"price_per_gb":111.08,"capacity_gb":1920,"heatsink":false,"url":"https://kakaku.com/item/K0001105353/","source":"Amazon.co.jp","release_date":"","price_per_tb":111084,"form":"SATA 2.5インチ"},{"maker":"Kingston","name":"Data Center DC600M SEDC600M/3840G","price":475287,"price_per_gb":123.77,"capacity_gb":3840,"heatsink":false,"url":"https://kakaku.com/item/K0001541101/","source":"Amazon.co.jp","release_date":"","price_per_tb":123773,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4620 SSDSC2KG038TZ1Z","price":499706,"price_per_gb":130.13,"capacity_gb":3840,"heatsink":false,"url":"https://kakaku.com/item/K0001662707/","source":"Amazon.co.jp","release_date":"","price_per_tb":130132,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4520 SSDSC2KB019TZ1Z","price":254895,"price_per_gb":132.76,"capacity_gb":1920,"heatsink":false,"url":"https://kakaku.com/item/K0001662711/","source":"Amazon.co.jp","release_date":"","price_per_tb":132758,"form":"SATA 2.5インチ"},{"maker":"Kingston","name":"Data Center DC600M SEDC600M/1920G","price":260812,"price_per_gb":135.84,"capacity_gb":1920,"heatsink":false,"url":"https://kakaku.com/item/K0001541102/","source":"Amazon.co.jp","release_date":"","price_per_tb":135840,"form":"SATA 2.5インチ"},{"maker":"Solidigm","name":"D3-S4620 SSDSC2KG019TZ1Z","price":306564,"price_per_gb":159.67,"capacity_gb":1920,"heatsink":false,"url":"https://kakaku.com/item/K0001662706/","source":"Amazon.co.jp","release_date":"","price_per_tb":159669,"form":"SATA 2.5インチ"}]}],"events":[]}};
+
+// Must match ALERT_PCT / ALERT_PCT_7D in scraper.py
+const ALERT_PCT = 0.05, ALERT_PCT_7D = 0.10;
+const SATA_CAPS = ["240G", "480G", "960G"];
+const M2_CAPS   = ["500G", "1TB", "2TB", "4TB"];
+const M2_ROWS   = [
+  { group:"Gen4", hs:false, label:"Gen4" }, { group:"Gen4", hs:true, label:"Gen4", tag:"ヒートシンク付" },
+  { group:"Gen5", hs:false, label:"Gen5" }, { group:"Gen5", hs:true, label:"Gen5", tag:"ヒートシンク付" },
+];
+const SEG_KEYS = Object.keys(PRICES_DATA);
+const chartInstances = {};
+let currentTab = "SATA";
+let entForm = "all";
+
+// ── Helpers ──────────────────────────────────────────────────────────────
+const yen = n => n == null ? "—" : "¥" + Math.round(n).toLocaleString();
+const yen1 = n => n == null ? "—" : "¥" + n.toFixed(1);
+function escHtml(s){ return String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+const segMeta = k => PRICES_DATA[k]?.meta ?? {};
+const segLabel = k => segMeta(k).label ?? k;
+const isEnt = k => segMeta(k).kind === "enterprise";
+const consumerKeys = () => SEG_KEYS.filter(k => !isEnt(k));
+const entKeys = () => SEG_KEYS.filter(k => isEnt(k) && (PRICES_DATA[k].history||[]).length);
+function findSeg(group, cap, hs){
+  return consumerKeys().find(k => { const m = segMeta(k); return m.group===group && m.cap_label===cap && !!m.heatsink===!!hs; });
+}
+function pctChange(cur, prev){ return (cur != null && prev) ? (cur - prev) / prev : null; }
+function chgHtml(p, cls=""){
+  if (p == null) return "";
+  const c = p > 0 ? "change-up" : p < 0 ? "change-down" : "change-flat";
+  const a = p > 0 ? "▲" : p < 0 ? "▼" : "—";
+  return `<span class="${cls} ${c}">${a}${p>0?"+":""}${(p*100).toFixed(1)}%</span>`;
+}
+function prevEntryWith(history, idx, field){
+  for (let i = idx - 1; i >= 0; i--) if (history[i][field] != null) return history[i];
+  return null;
+}
+function prevModelPrice(history, entryIdx, url){
+  for (let i = entryIdx - 1; i >= 0; i--) {
+    const ms = history[i].models; if (!ms || !ms.length) continue;
+    const m = ms.find(x => x.url === url); return m ? m.price : null;   // compare with the previous run that has detail
+  }
+  return null;
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────
+(function init(){
+  document.getElementById("alert-note").textContent =
+    `（前回比 ±${ALERT_PCT*100}% ／ 7日比 ±${ALERT_PCT_7D*100}% を有意な変動として表示）`;
+  const dates = SEG_KEYS.flatMap(k => (PRICES_DATA[k].history||[]).map(h => h.date)).sort();
+  if (dates.length) document.getElementById("last-updated").textContent = `最終更新: ${dates[dates.length-1]}`;
+  document.querySelectorAll("#tabs .tab").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+  renderPickup(); renderMatrix(); renderSegments(); renderEnterprise();
+})();
+
+function setTab(tab){
+  currentTab = tab;
+  document.querySelectorAll("#tabs .tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  renderSegments();
+}
+
+// ── Pick up ──────────────────────────────────────────────────────────────
+function renderPickup(){
+  const list = document.getElementById("pickup-list");
+  const cut = new Date(); cut.setDate(cut.getDate() - 7);
+  const cutStr = cut.toISOString().slice(0,10);
+  const items = [];
+  for (const k of SEG_KEYS) {
+    for (const ev of (PRICES_DATA[k].events||[])) if (ev.date >= cutStr) items.push({...ev});
+    const h = PRICES_DATA[k].history||[]; const last = h[h.length-1];
+    for (const m of (last?.models||[]))
+      if (m.release_date && m.release_date >= cutStr)
+        items.push({type:"new_product", segment:k, date:m.release_date, maker:m.maker, name:m.name, price:m.price, url:m.url});
+  }
+  items.sort((a,b) => b.date.localeCompare(a.date));
+  if (!items.length) { list.innerHTML = `<p class="no-pickup">直近7日間に有意な価格変動・新着商品はありません</p>`; return; }
+
+  list.innerHTML = items.map(ev => {
+    const seg = escHtml(segLabel(ev.segment));
+    if (ev.type === "new_product") {
+      const nm = `${escHtml(ev.maker)} ${escHtml(ev.name)}`;
+      const nmHtml = ev.url ? `<a href="${ev.url}" target="_blank" rel="noopener" style="color:inherit">${nm}</a>` : nm;
+      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+        <span class="pickup-text"><b>${seg}</b> — ${nmHtml} ${yen(ev.price)}</span>
+        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+    }
+    if (ev.type === "new_model") {
+      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+        <span class="pickup-text"><b>${seg}</b> が初めて検出 — ${yen(ev.current)}${ev.unit||""}</span>
+        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+    }
+    const up = ev.current > ev.prev, is7 = ev.type === "price_change_7d";
+    return `<div class="pickup-item ${up?"up":"down"}"><span class="pickup-icon">${up?"📈":"📉"}</span>
+      <span class="pickup-text"><b>${seg}</b>  ${yen(ev.prev)} → ${yen(ev.current)}${ev.unit||""}</span>
+      <span class="pickup-date">${ev.date}</span>
+      ${is7 ? `<span class="pickup-badge badge-7d">7日</span>` : ""}
+      <span class="pickup-badge ${up?"badge-up":"badge-down"}">${ev.change}</span></div>`;
+  }).join("");
+}
+
+// ── Matrix ───────────────────────────────────────────────────────────────
+function cellHtml(key){
+  if (!key) return `<td class="mx-empty">—</td>`;
+  const h = PRICES_DATA[key].history || [];
+  const last = h[h.length-1];
+  if (!last || last.min_price == null) return `<td class="mx-empty">—</td>`;
+  const prev = prevEntryWith(h, h.length-1, "min_price");
+  const chg = prev ? pctChange(last.min_price, prev.min_price) : null;
+  const sig = chg != null && Math.abs(chg) >= ALERT_PCT;
+  const msi = (last.models||[]).filter(m => m.maker === "MSI").sort((a,b) => a.price-b.price)[0];
+  const msiLine = msi ? `<div class="mx-msi">MSI ${yen(msi.price)}${msi.price>last.min_price
+      ? ` (+${((msi.price/last.min_price-1)*100).toFixed(0)}%)` : " (最安)"}</div>` : "";
+  return `<td><div class="mx-cell" data-key="${escHtml(key)}">
+      <div><span class="mx-min">${yen(last.min_price)}</span>${chg!=null ? chgHtml(chg,"mx-chg") : ""}</div>
+      <div class="mx-sub">中央値 <b>${yen(last.median_price)}</b> ・ <b>${yen1(last.min_per_gb)}</b>/GB</div>
+      ${msiLine}</div></td>`;
+}
+function renderMatrix(){
+  const sata = document.getElementById("matrix-sata"), m2 = document.getElementById("matrix-m2");
+  sata.innerHTML = `<thead><tr><th></th>${SATA_CAPS.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+    <tbody><tr><td class="rowhead">SATA 2.5″</td>${SATA_CAPS.map(c => cellHtml(findSeg("SATA", c, false))).join("")}</tr></tbody>`;
+  m2.innerHTML = `<thead><tr><th></th>${M2_CAPS.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>` +
+    M2_ROWS.map(r => `<tr><td class="rowhead">M.2 ${r.label}${r.tag ? `<span class="hs-tag">${r.tag}</span>` : ""}</td>
+      ${M2_CAPS.map(c => cellHtml(findSeg(r.group, c, r.hs))).join("")}</tr>`).join("") + `</tbody>`;
+  document.querySelectorAll(".mx-cell").forEach(el => el.addEventListener("click", () => gotoSeg(el.dataset.key)));
+}
+function gotoSeg(key){
+  setTab(segMeta(key).group);
+  const el = document.getElementById("card-" + SEG_KEYS.indexOf(key));
+  if (el) { el.scrollIntoView({behavior:"smooth", block:"start"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+}
+
+// ── Segment cards ────────────────────────────────────────────────────────
+function destroyCharts(prefix){
+  Object.keys(chartInstances).filter(k => k.startsWith(prefix)).forEach(k => { try{ chartInstances[k].destroy(); }catch(e){} delete chartInstances[k]; });
+}
+function renderSegments(){
+  destroyCharts("seg-");
+  const list = document.getElementById("seg-list");
+  list.innerHTML = "";
+  if (!SEG_KEYS.length || !SEG_KEYS.some(k => (PRICES_DATA[k].history||[]).length)) {
+    list.innerHTML = `<div class="card-no-data">データがありません — scraper.py を実行してください</div>`; return;
+  }
+  const keys = consumerKeys().filter(k => segMeta(k).group === currentTab).sort((a,b) => segMeta(a).sort - segMeta(b).sort);
+  const empty = [];
+  keys.forEach(k => {
+    const data = PRICES_DATA[k], h = data.history || [];
+    if (!h.length) { empty.push(segLabel(k)); return; }
+    list.appendChild(buildCard(k, data));
+  });
+  if (empty.length) list.insertAdjacentHTML("beforeend", `<div class="empty-note">該当商品なし: ${empty.map(escHtml).join(" / ")}</div>`);
+}
+function buildCard(key, data){
+  const idx = SEG_KEYS.indexOf(key), meta = data.meta, h = data.history;
+  const last = h[h.length-1];
+  const prev = prevEntryWith(h, h.length-1, "min_price");
+  const chg = (last.min_price != null && prev) ? pctChange(last.min_price, prev.min_price) : null;
+  const msi = (last.models||[]).filter(m => m.maker==="MSI").sort((a,b)=>a.price-b.price)[0];
+  const grpTag = meta.group==="SATA" ? "tag-sata" : meta.group==="Gen4" ? "tag-gen4" : "tag-gen5";
+  const card = document.createElement("div");
+  card.className = "seg-card"; card.id = "card-" + idx;
+  card.innerHTML = `
+    <div class="card-top">
+      <div><div class="card-name-row">
+        <span class="tag ${grpTag}">${meta.group==="SATA" ? "SATA" : "M.2 " + meta.group}</span>
+        ${meta.heatsink ? `<span class="tag tag-hs">ヒートシンク付</span>` : ""}
+        <span class="card-name">${escHtml(meta.cap_label)}</span></div></div>
+      <div class="card-price-block"><div class="card-min-label">最安値</div>
+        <div class="card-min-price">${yen(last.min_price)}</div>
+        <div class="card-change">${chg!=null ? "前回比 " + chgHtml(chg) : `<span class="change-flat">前回比 —</span>`}</div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-l">中央値</div><div class="stat-v">${yen(last.median_price)}</div></div>
+      <div class="stat"><div class="stat-l">最安 ¥/GB</div><div class="stat-v">${yen1(last.min_per_gb)}</div></div>
+      <div class="stat"><div class="stat-l">中央値 ¥/GB</div><div class="stat-v">${yen1(last.median_per_gb)}</div></div>
+      <div class="stat"><div class="stat-l">対象モデル数</div><div class="stat-v">${last.n_models ?? 0}</div></div>
+      ${msi ? `<div class="stat"><div class="stat-l">MSI 最安</div><div class="stat-v msi">${yen(msi.price)}</div></div>` : ""}
+    </div>
+    <div class="card-chart"><canvas id="seg-chart-${idx}"></canvas></div>
+    <div class="models-section">
+      <div class="date-selector-bar">
+        <span class="date-selector-label">📋 モデル別価格ランキング</span>
+        <select class="date-selector-select" data-key="${escHtml(key)}">${dateOptions(h)}</select>
+        <span class="date-selector-badge">（正規代理店のみ）</span>
+      </div>
+      <div class="table-scroll" id="models-${idx}">${modelsHtml(h, null)}</div>
+    </div>`;
+  card.querySelector("select").addEventListener("change", e => {
+    document.getElementById(`models-${idx}`).innerHTML = modelsHtml(PRICES_DATA[key].history, e.target.value || null);
+  });
+  requestAnimationFrame(() => buildChart(`seg-chart-${idx}`, h));
+  return card;
+}
+function dateOptions(h){
+  const ds = h.filter(x => x.models && x.models.length).map(x => x.date).reverse();
+  if (!ds.length) return `<option value="">データなし</option>`;
+  return ds.map((d,i) => `<option value="${d}"${i===0?" selected":""}>${d}${i===0?"（最新）":""}</option>`).join("");
+}
+function modelsHtml(h, date){
+  let ei = -1;
+  if (date) ei = h.findIndex(x => x.date === date);
+  else for (let i = h.length-1; i >= 0; i--) if (h[i].models && h[i].models.length) { ei = i; break; }
+  const models = ei >= 0 ? (h[ei].models || []) : [];
+  if (!models.length) return `<div class="models-empty">この日付のデータはありません</div>`;
+  const rows = models.map((m, i) => {
+    const rank = i + 1, isMSI = m.maker === "MSI";
+    const pp = prevModelPrice(h, ei, m.url);
+    const d = pp ? pctChange(m.price, pp) : null;
+    const sig = d != null && Math.abs(d) >= ALERT_PCT;
+    const name = m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${escHtml(m.name)}</a>` : escHtml(m.name);
+    return `<tr class="${rank<=3 ? "rank-"+rank : ""} ${isMSI ? "is-msi" : ""}">
+      <td class="rank-num">RANK ${rank}</td>
+      <td class="model-maker ${isMSI?"msi":""}">${escHtml(m.maker)}</td>
+      <td class="model-name">${m.ps5 ? `<span class="tag tag-ps5">PS5</span>` : ""}${name}</td>
+      <td class="model-price ${isMSI?"msi":""}">${yen(m.price)}${d!=null && d!==0 ? chgHtml(d, "delta" + (sig?" sig":"")) : ""}</td>
+      <td class="model-num">${yen1(m.price_per_gb)}</td>
+      <td class="model-source">${escHtml(m.source || "kakaku")}</td></tr>`;
+  }).join("");
+  return `<table class="model-table"><thead><tr><th></th><th>Maker</th><th>Model</th>
+    <th class="right">Price</th><th class="right">¥/GB</th><th class="right">Source</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function buildChart(canvasId, h){
+  const ctx = document.getElementById(canvasId); if (!ctx) return;
+  const ds = [
+    { label:"最安値", data:h.map(x => x.min_price ?? null), borderColor:"#2563eb", backgroundColor:"rgba(37,99,235,.07)",
+      borderWidth:2.5, pointRadius:h.length>30?1:3, fill:true, tension:.35, spanGaps:true },
+    { label:"中央値", data:h.map(x => x.median_price ?? null), borderColor:"#9ca3af", borderWidth:1.5,
+      pointRadius:0, fill:false, tension:.35, spanGaps:true, borderDash:[4,3] },
+  ];
+  chartInstances[canvasId] = lineChart(ctx, h.map(x => x.date.slice(5)), ds, v => "¥" + v.toLocaleString());
+}
+function lineChart(ctx, labels, datasets, fmt){
+  return new Chart(ctx, { type:"line", data:{labels, datasets}, options:{
+    responsive:true, maintainAspectRatio:false, interaction:{mode:"index", intersect:false},
+    plugins:{ legend:{position:"bottom", labels:{color:"#6b7280", boxWidth:10, padding:12, font:{size:11}}},
+      tooltip:{ backgroundColor:"#fff", borderColor:"#e4e6ea", borderWidth:1, titleColor:"#1a1d23", bodyColor:"#374151", padding:10,
+        callbacks:{ label: c => c.parsed.y != null ? ` ${c.dataset.label}: ${fmt(c.parsed.y)}` : ` ${c.dataset.label}: —` } } },
+    scales:{ x:{ticks:{color:"#9ca3af", font:{size:11}, maxTicksLimit:10, maxRotation:0}, grid:{color:"#f3f4f6"}},
+             y:{ticks:{color:"#9ca3af", font:{size:11}, callback:fmt}, grid:{color:"#f3f4f6"}} } } });
+}
+
+// ── Enterprise ───────────────────────────────────────────────────────────
+function renderEnterprise(){
+  destroyCharts("ent-");
+  const box = document.getElementById("ent-box");
+  const keys = entKeys();
+  if (!keys.length) { box.innerHTML = `<div class="models-empty">エンタープライズ SSD のデータはまだありません（次回の scraper.py 実行後に表示）</div>`; return; }
+
+  const forms = [...new Set(keys.map(k => segMeta(k).form))];
+  const rows = [];
+  keys.forEach(k => {
+    const h = PRICES_DATA[k].history; const ei = h.length - 1;
+    (h[ei].models || []).forEach(m => rows.push({m, form:segMeta(k).form, dp: pctChange(m.price, prevModelPrice(h, ei, m.url))}));
+  });
+  rows.sort((a,b) => a.m.price_per_tb - b.m.price_per_tb);
+  const shown = rows.filter(r => entForm === "all" || r.form === entForm);
+
+  const chips = ["all", ...forms].map(f =>
+    `<button class="chip${entForm===f?" active":""}" data-f="${escHtml(f)}">${f==="all" ? "すべて" : escHtml(f)}</button>`).join("");
+  const body = shown.map(({m, form, dp}) => {
+    const sig = dp != null && Math.abs(dp) >= ALERT_PCT;
+    const endu = [m.dwpd != null ? `${m.dwpd} DWPD` : "", m.tbw != null ? `${m.tbw.toLocaleString()} TBW` : ""].filter(Boolean).join(" / ") || "—";
+    const isMSI = m.maker === "MSI";
+    return `<tr class="${isMSI?"is-msi":""}">
+      <td class="model-maker ${isMSI?"msi":""}">${escHtml(m.maker)}</td>
+      <td class="model-name">${m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${escHtml(m.name)}</a>` : escHtml(m.name)}</td>
+      <td class="model-num">${escHtml(form)}</td>
+      <td class="model-num">${m.capacity_gb >= 1000 ? (m.capacity_gb/1000).toFixed(2).replace(/\.?0+$/,"") + "TB" : m.capacity_gb + "GB"}</td>
+      <td class="model-num">${endu}</td>
+      <td class="model-price ${isMSI?"msi":""}">${yen(m.price)}${dp!=null && dp!==0 ? chgHtml(dp, "delta"+(sig?" sig":"")) : ""}</td>
+      <td class="model-price">${yen(m.price_per_tb)}</td>
+      <td class="model-source">${escHtml(m.source||"")}${m.unauthorized ? `<span class="unauth" title="正規代理店ホワイトリスト外の最安店">※</span>` : ""}</td></tr>`;
+  }).join("");
+
+  box.innerHTML = `
+    <div class="chips">${chips}</div>
+    <div class="ent-chart"><canvas id="ent-chart"></canvas></div>
+    <div class="table-scroll"><table class="model-table"><thead><tr>
+      <th>Maker</th><th>Model</th><th>Form</th><th class="right">容量</th><th class="right">耐久性</th>
+      <th class="right">Price</th><th class="right">¥/TB</th><th class="right">Source</th></tr></thead>
+      <tbody>${body || `<tr><td colspan="8" class="models-empty">該当なし</td></tr>`}</tbody></table></div>
+    <div class="ent-note">¥/TB の安い順。※ = 正規代理店リスト外の店舗価格（エンタープライズ品は取扱店が限られるため、正規店に無い場合のみ最安店を表示）。</div>`;
+  box.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { entForm = c.dataset.f; renderEnterprise(); }));
+
+  const labels = [...new Set(keys.flatMap(k => PRICES_DATA[k].history.map(x => x.date)))].sort();
+  const palette = ["#2563eb", "#9333ea", "#ea580c", "#0d9488", "#64748b"];
+  const ds = keys.filter(k => entForm==="all" || segMeta(k).form===entForm).map((k,i) => {
+    const byDate = Object.fromEntries(PRICES_DATA[k].history.map(x => [x.date, x.min_per_tb ?? null]));
+    return { label:segMeta(k).form + "（最安 ¥/TB）", data:labels.map(d => byDate[d] ?? null), borderColor:palette[i % palette.length],
+      borderWidth:2, pointRadius:labels.length>30?1:3, tension:.3, spanGaps:true, fill:false };
+  });
+  chartInstances["ent-chart"] = lineChart(document.getElementById("ent-chart"), labels.map(d => d.slice(5)), ds, v => "¥" + v.toLocaleString());
+}
+</script>
+</body>
+</html>
