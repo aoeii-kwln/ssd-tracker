@@ -1423,6 +1423,104 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 7480,
+    "median_price": 11978,
+    "min_per_gb": 31.17,
+    "median_per_gb": 49.91,
+    "n_models": 8,
+    "models": [
+     {
+      "maker": "ELECOM",
+      "name": "ESD-IB0240G",
+      "price": 7480,
+      "price_per_gb": 31.17,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001121678/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-240GT-R-I",
+      "price": 8330,
+      "price_per_gb": 34.71,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782313/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM S270 SATA 2.5 240GB",
+      "price": 9280,
+      "price_per_gb": 38.67,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001511032/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Crucial",
+      "name": "BX500 CT240BX500SSD1",
+      "price": 11000,
+      "price_per_gb": 45.83,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001086728/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "GX1 T253X1240G0C101 [ブラック]",
+      "price": 12956,
+      "price_per_gb": 53.98,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001283990/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "A400 SSD SA400S37/240G",
+      "price": 12980,
+      "price_per_gb": 54.08,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000956840/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green WDS240G3G0A",
+      "price": 17800,
+      "price_per_gb": 74.17,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001457741/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "SDSSDX-240G-G25",
+      "price": 70749,
+      "price_per_gb": 294.79,
+      "capacity_gb": 240,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000350090/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -4005,6 +4103,181 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 8980,
+    "median_price": 15335,
+    "min_per_gb": 18.71,
+    "median_per_gb": 31.95,
+    "n_models": 15,
+    "models": [
+     {
+      "maker": "MSI",
+      "name": "SPATIUM S270 SATA 2.5 480GB",
+      "price": 8980,
+      "price_per_gb": 18.71,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001650235/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK480S/R",
+      "price": 11680,
+      "price_per_gb": 24.33,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001805590/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-480GT-R",
+      "price": 12980,
+      "price_per_gb": 27.04,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001090768/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ELECOM",
+      "name": "ESD-IB0480G",
+      "price": 13800,
+      "price_per_gb": 28.75,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001121679/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK480S/J [ブラック]",
+      "price": 14480,
+      "price_per_gb": 30.17,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001399071/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA LTC10Z480GG8",
+      "price": 14500,
+      "price_per_gb": 30.21,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001426771/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-480GT-R-I",
+      "price": 14920,
+      "price_per_gb": 31.08,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782314/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "SSDNow UV400 SUV400S37/480G",
+      "price": 15335,
+      "price_per_gb": 31.95,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000882468/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU630 ASU630SS-480GQ-R",
+      "price": 15800,
+      "price_per_gb": 32.92,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001119258/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK480S/N",
+      "price": 18880,
+      "price_per_gb": 39.33,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001421819/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "A400 SSD SA400S37/480G",
+      "price": 20200,
+      "price_per_gb": 42.08,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000956841/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green WDS480G3G0A",
+      "price": 21890,
+      "price_per_gb": 45.6,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001457740/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green WDS480G2G0A",
+      "price": 24271,
+      "price_per_gb": 50.56,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001144137/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Z410 SD8SBBU-480G-1122",
+      "price": 37166,
+      "price_per_gb": 77.43,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000876167/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "Data Center DC600M SEDC600M/480G",
+      "price": 100166,
+      "price_per_gb": 208.68,
+      "capacity_gb": 480,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001541104/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -5814,6 +6087,137 @@
       "heatsink": false,
       "url": "https://kakaku.com/item/K0001399072/",
       "source": "TSUKUMO",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK960S/N",
+      "price": 28400,
+      "price_per_gb": 29.58,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001686763/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "A400 SSD SA400S37/960G",
+      "price": 29980,
+      "price_per_gb": 31.23,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001226692/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "Slim S55 SP960GBSS3S55S25 [ブラック]",
+      "price": 40110,
+      "price_per_gb": 41.78,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000848240/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "SSDNow V310 Drive SV310S37A/960G",
+      "price": 64917,
+      "price_per_gb": 67.62,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000678003/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "Data Center DC600M SEDC600M/960G",
+      "price": 148928,
+      "price_per_gb": 155.13,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001541103/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 19500,
+    "median_price": 22980,
+    "min_per_gb": 20.31,
+    "median_per_gb": 23.94,
+    "n_models": 11,
+    "models": [
+     {
+      "maker": "MSI",
+      "name": "SPATIUM S270 SATA 2.5 960GB",
+      "price": 19500,
+      "price_per_gb": 20.31,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001776327/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK960S/R",
+      "price": 19780,
+      "price_per_gb": 20.6,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001801868/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-960GT-R",
+      "price": 19800,
+      "price_per_gb": 20.62,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001090769/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-960GT-R-I",
+      "price": 19800,
+      "price_per_gb": 20.62,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782315/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "ELECOM",
+      "name": "ESD-IB0960G",
+      "price": 21900,
+      "price_per_gb": 22.81,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001121680/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA SATA SSD-CK960S/J [ブラック]",
+      "price": 22980,
+      "price_per_gb": 23.94,
+      "capacity_gb": 960,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001399072/",
+      "source": "ソフマップ.com",
       "release_date": ""
      },
      {
@@ -8425,6 +8829,183 @@
       "url": "https://kakaku.com/item/K0001708141/",
       "source": "Amazon.co.jp",
       "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG SPECTRIX S65G SSPECTRIXS65G-500G-CI-I",
+      "price": 19430,
+      "price_per_gb": 38.86,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782325/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kingston",
+      "name": "NV3 PCIe 4.0 NVMe SSD SNV3S/500G",
+      "price": 19800,
+      "price_per_gb": 39.6,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657932/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5100 NVMe WDS500G5B0E",
+      "price": 20800,
+      "price_per_gb": 41.6,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001707602/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX 7100 NVMe SSD SDSP71500GAN-000E0",
+      "price": 21430,
+      "price_per_gb": 42.86,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803484/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44L TM8FPK500G0C101",
+      "price": 22467,
+      "price_per_gb": 44.93,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001642917/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN7100 NVMe SSD WDS500G4X0E",
+      "price": 23980,
+      "price_per_gb": 47.96,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001673418/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ELECOM",
+      "name": "ESD-IPS0500G",
+      "price": 25080,
+      "price_per_gb": 50.16,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001418613/",
+      "source": "ビックカメラ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN580 NVMe WDS500G3B0E",
+      "price": 41932,
+      "price_per_gb": 83.86,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001552204/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN770 NVMe WDS500G3X0E",
+      "price": 49830,
+      "price_per_gb": 99.66,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001424273/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 15181,
+    "median_price": 19800,
+    "min_per_gb": 30.36,
+    "median_per_gb": 39.6,
+    "n_models": 15,
+    "models": [
+     {
+      "maker": "Silicon Power",
+      "name": "PCIe Gen 4x4 UD90 SP500GBP44UD9005",
+      "price": 15181,
+      "price_per_gb": 30.36,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001702395/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M452 PCIe 4.0 NVMe M.2 500GB",
+      "price": 15480,
+      "price_per_gb": 30.96,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793464/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-500GCS-DP (M.2 2280 500GB) ドスパラ限定モデル",
+      "price": 15980,
+      "price_per_gb": 31.96,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001687665/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "PNY",
+      "name": "CS2241 M280CS2241-500-CL",
+      "price": 15980,
+      "price_per_gb": 31.96,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001523557/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green SN3000 NVMe SSD WDS500G4G0E",
+      "price": 17990,
+      "price_per_gb": 35.98,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001708141/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-500GCS-I",
+      "price": 18077,
+      "price_per_gb": 36.15,
+      "capacity_gb": 500,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001783172/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
      },
      {
       "maker": "ADATA",
@@ -18343,9 +18924,742 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 20980,
+    "median_price": 34980,
+    "min_per_gb": 20.98,
+    "median_per_gb": 34.98,
+    "n_models": 63,
+    "models": [
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M450 PCIe 4.0 NVMe M.2 1TB V1",
+      "price": 20980,
+      "price_per_gb": 20.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001678770/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "SJ01KGBP44UD9N05J5",
+      "price": 24282,
+      "price_per_gb": 24.28,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001766825/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "EPHD-ISM2G4-1T",
+      "price": 27200,
+      "price_per_gb": 27.2,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001770673/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "NV3 PCIe 4.0 NVMe SSD SNV3S/1000G",
+      "price": 27980,
+      "price_per_gb": 27.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657933/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi7000G 49367-J",
+      "price": 27980,
+      "price_per_gb": 27.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001806175/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi5000 31826-J",
+      "price": 28000,
+      "price_per_gb": 28.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001683487/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "PCIe Gen 4x4 US75 SP01KGBP44US7505",
+      "price": 28280,
+      "price_per_gb": 28.28,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724857/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-1000GCS-I",
+      "price": 28768,
+      "price_per_gb": 28.77,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782321/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Lexar",
+      "name": "NM790 LNM790X001T-RNNNG",
+      "price": 28980,
+      "price_per_gb": 28.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001537212/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-1000GCS-DP (M.2 2280 1TB) ドスパラ限定モデル",
+      "price": 28980,
+      "price_per_gb": 28.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001687666/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 900 PRO SLEG-900P-1TCS-DP (M.2 2280 1TB) ドスパラ限定モデル",
+      "price": 28980,
+      "price_per_gb": 28.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001690624/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "PNY",
+      "name": "CS2340 M280CS2340-1TB-TB",
+      "price": 28980,
+      "price_per_gb": 28.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001806177/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK1.0N4B/R",
+      "price": 29680,
+      "price_per_gb": 29.68,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001801866/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44Q TM8FFD001T0C101",
+      "price": 29880,
+      "price_per_gb": 29.88,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001629291/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5100 NVMe WDS100T5B0E",
+      "price": 31000,
+      "price_per_gb": 31.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001707603/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "NQ790 LNQ790X001T-RNNNG",
+      "price": 31480,
+      "price_per_gb": 31.48,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001785780/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA PLUS G3 SSD-CK1.0N4PLG3J [ブラック]",
+      "price": 31980,
+      "price_per_gb": 31.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001579414/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 ALEG-960-1TCS-DP (M.2 2280 1TB) ドスパラ限定モデル",
+      "price": 31980,
+      "price_per_gb": 31.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001591844/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G4-1T",
+      "price": 32000,
+      "price_per_gb": 32.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001601574/",
+      "source": "コジマネット",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green SN3000 NVMe SSD WDS100T4G0E",
+      "price": 32244,
+      "price_per_gb": 32.24,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001708142/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK1.0N4B/J [ブラック]",
+      "price": 32480,
+      "price_per_gb": 32.48,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724150/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M470 PRO PCIe 4.0 NVMe M.2 1TB",
+      "price": 32980,
+      "price_per_gb": 32.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001769291/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG SPECTRIX S65G SSPECTRIXS65G-1000G-CI-I",
+      "price": 33280,
+      "price_per_gb": 33.28,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782326/",
+      "source": "パソコン工房",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P1T0B-IT/EC",
+      "price": 33400,
+      "price_per_gb": 33.4,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504088/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE G50 TM8FFE001T0C129",
+      "price": 33468,
+      "price_per_gb": 33.47,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648253/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN7100 NVMe SSD WDS100T4X0E",
+      "price": 33980,
+      "price_per_gb": 33.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001673419/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "旭東エレクトロニクス",
+      "name": "SUNEAST GOLD SERIES 720 SE-MN4001T2LG2G",
+      "price": 34010,
+      "price_per_gb": 34.01,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001800171/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5000 NVMe WDS100T4B0E",
+      "price": 34500,
+      "price_per_gb": 34.5,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001637821/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 MAX ALEG-960M-1TCS-I",
+      "price": 34500,
+      "price_per_gb": 34.5,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782311/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S70 BLADE AGAMMIXS70B-1T-CS-I",
+      "price": 34500,
+      "price_per_gb": 34.5,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782317/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Team",
+      "name": "MP44 TM8FPW001T0C101",
+      "price": 34816,
+      "price_per_gb": 34.82,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001568731/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P1T0B-IT",
+      "price": 34980,
+      "price_per_gb": 34.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504087/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F1000GBMP600EHS",
+      "price": 34990,
+      "price_per_gb": 34.99,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657938/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F1000GBMP600ENH",
+      "price": 34990,
+      "price_per_gb": 34.99,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657935/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS100T2X0E",
+      "price": 35000,
+      "price_per_gb": 35.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001467994/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-CREATE CLASSIC C47 TM8FFC001T0C129",
+      "price": 36146,
+      "price_per_gb": 36.15,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648257/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "PLAY X LNMPLYX001T-RNNNG",
+      "price": 37980,
+      "price_per_gb": 37.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001778651/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN770 NVMe WDS100T3X0E",
+      "price": 38000,
+      "price_per_gb": 38.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001424274/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M461 PCIe 4.0 NVMe M.2 1TB",
+      "price": 39225,
+      "price_per_gb": 39.23,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001522135/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S70 BLADE AGAMMIXS70B-1T-CS",
+      "price": 39447,
+      "price_per_gb": 39.45,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001351807/",
+      "source": "ソフマップ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 MAX ALEG-960M-1TCS",
+      "price": 39900,
+      "price_per_gb": 39.9,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001503474/",
+      "source": "ソフマップ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 900 SLEG-900-1TCS",
+      "price": 39958,
+      "price_per_gb": 39.96,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001558613/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX 7100 NVMe SSD SDSP71100TAN-000E0",
+      "price": 39980,
+      "price_per_gb": 39.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803485/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK1.0N4B/N",
+      "price": 39990,
+      "price_per_gb": 39.99,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001719360/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 MZ-V9V1T0B-IT",
+      "price": 40980,
+      "price_per_gb": 40.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793787/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO CSSD-F1000GBMP600PRO",
+      "price": 42175,
+      "price_per_gb": 42.17,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001329257/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S50 AGAMMIXS50-1TT-C [グレー]",
+      "price": 43175,
+      "price_per_gb": 43.17,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001218888/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO NH CSSD-F1000GBMP600PNH",
+      "price": 43800,
+      "price_per_gb": 43.8,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001493760/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN580 NVMe WDS100T3B0E",
+      "price": 44200,
+      "price_per_gb": 44.2,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001552205/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ELECOM",
+      "name": "ESD-IPS1000G",
+      "price": 45000,
+      "price_per_gb": 45.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001418614/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81100TAN-000E0",
+      "price": 48420,
+      "price_per_gb": 48.42,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803480/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Crucial",
+      "name": "T500 CT1000T500SSD8JP",
+      "price": 48452,
+      "price_per_gb": 48.45,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001588761/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-CREATE CLASSIC TM8FPM001T0C329",
+      "price": 49800,
+      "price_per_gb": 49.8,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001554856/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81100TAH-000E0",
+      "price": 51700,
+      "price_per_gb": 51.7,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803476/",
+      "source": "パソコン工房",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F1000GBMP600ECS",
+      "price": 53710,
+      "price_per_gb": 53.71,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001656658/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G4DG-1T",
+      "price": 55900,
+      "price_per_gb": 55.9,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001791215/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "FURY Renegade SSD SFYRSK/1000G",
+      "price": 55976,
+      "price_per_gb": 55.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001520136/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850P NVMe SSD for PS5 Consoles WDBBYV0010BNC-WRSN",
+      "price": 59694,
+      "price_per_gb": 59.69,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001551011/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kingston",
+      "name": "FURY Renegade SSD SFYRS/1000G",
+      "price": 65999,
+      "price_per_gb": 66.0,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001419557/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE G70 PRO TM8FFH001T0C129",
+      "price": 67452,
+      "price_per_gb": 67.45,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648255/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO LPX CSSD-F1000GBMP600PLPW [ホワイト]",
+      "price": 68743,
+      "price_per_gb": 68.74,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001527313/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850 NVMe WDS100T1X0E-00AFY0",
+      "price": 74788,
+      "price_per_gb": 74.79,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001309862/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO LPX CSSD-F1000GBMP600PLP",
+      "price": 91321,
+      "price_per_gb": 91.32,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001419777/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
-  "events": []
+  "events": [
+   {
+    "type": "price_change",
+    "date": "2026-11-10 16:00",
+    "segment": "Gen4 1TB",
+    "prev": 24282,
+    "current": 20980,
+    "unit": "",
+    "change": "-13.6%",
+    "label": "値下がり M.2 Gen4 1TB -13.6% ¥24,282 -> ¥20,980"
+   },
+   {
+    "type": "price_change_7d",
+    "date": "2026-11-10 16:00",
+    "segment": "Gen4 1TB",
+    "prev": 24980,
+    "current": 20980,
+    "unit": "",
+    "change": "-16.0%",
+    "label": "7日 下落 M.2 Gen4 1TB -16.0% ¥24,980 -> ¥20,980"
+   }
+  ]
  },
  "Gen4 1TB HS": {
   "meta": {
@@ -19155,6 +20469,62 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 30999,
+    "median_price": 35890,
+    "min_per_gb": 31.0,
+    "median_per_gb": 35.89,
+    "n_models": 4,
+    "models": [
+     {
+      "maker": "Crucial",
+      "name": "P310 CT1000P310SSD5-JP",
+      "price": 30999,
+      "price_per_gb": 31.0,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001699496/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Lexar",
+      "name": "NM790 with Heatsink LNM790X001T-RN9NG",
+      "price": 34800,
+      "price_per_gb": 34.8,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001590490/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS100T2XHE",
+      "price": 36980,
+      "price_per_gb": 36.98,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001472482/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO with Heatsink MZ-V9P1T0G-IT",
+      "price": 50980,
+      "price_per_gb": 50.98,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001546439/",
+      "source": "Joshin",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 30999,
     "median_price": 35890,
     "min_per_gb": 31.0,
@@ -27908,6 +29278,629 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 45980,
+    "median_price": 62756,
+    "min_per_gb": 22.99,
+    "median_per_gb": 31.38,
+    "n_models": 55,
+    "models": [
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-2000GCS-DP (M.2 2280 2TB) ドスパラ限定モデル",
+      "price": 45980,
+      "price_per_gb": 22.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001687667/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S50 Lite AGAMMIXS50L-2T-C",
+      "price": 47852,
+      "price_per_gb": 23.93,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001303286/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "SJ02KGBP44UD9N05J5",
+      "price": 47980,
+      "price_per_gb": 23.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001764239/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "PNY",
+      "name": "CS2340 M280CS2340-2TB-TB",
+      "price": 47980,
+      "price_per_gb": 23.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001806178/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "NV3 PCIe 4.0 NVMe SSD SNV3S/2000G",
+      "price": 48025,
+      "price_per_gb": 24.01,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657934/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi5000 31827-J",
+      "price": 48980,
+      "price_per_gb": 24.49,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001683488/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Green SN3000 NVMe SSD WDS200T4G0E",
+      "price": 49626,
+      "price_per_gb": 24.81,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001708143/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "PCIe Gen 4x4 US75 SP02KGBP44US7505",
+      "price": 51980,
+      "price_per_gb": 25.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724858/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi7000G 49368-J",
+      "price": 52030,
+      "price_per_gb": 26.02,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001672260/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5100 NVMe WDS200T5B0E",
+      "price": 52300,
+      "price_per_gb": 26.15,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001707604/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 860 SLEG-860-2000GCS-I",
+      "price": 53800,
+      "price_per_gb": 26.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782322/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "旭東エレクトロニクス",
+      "name": "SUNEAST GOLD SERIES 720 SE-MN4002T2LG2G",
+      "price": 53960,
+      "price_per_gb": 26.98,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001800172/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO LPX CSSD-F2000GBMP600PLP",
+      "price": 53980,
+      "price_per_gb": 26.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001419778/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 900 PRO SLEG-900P-2TCS-DP (M.2 2280 2TB) ドスパラ限定モデル",
+      "price": 54980,
+      "price_per_gb": 27.49,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001690625/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE G50 TM8FFE002T0C129",
+      "price": 55880,
+      "price_per_gb": 27.94,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648254/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44Q TM8FFD002T0C101",
+      "price": 56030,
+      "price_per_gb": 28.02,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001629290/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-CREATE CLASSIC C47 TM8FFC002T0C129",
+      "price": 56066,
+      "price_per_gb": 28.03,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648258/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "NQ790 LNQ790X002T-RNNNG",
+      "price": 56810,
+      "price_per_gb": 28.41,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001785781/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 ALEG-960-2TCS-DP (M.2 2280 2TB) ドスパラ限定モデル",
+      "price": 56980,
+      "price_per_gb": 28.49,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001591845/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "KOWIN",
+      "name": "KWLNV400T02",
+      "price": 57480,
+      "price_per_gb": 28.74,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001676266/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK2.0N4B/R",
+      "price": 58480,
+      "price_per_gb": 29.24,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001801867/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44 TM8FPW002T0C101",
+      "price": 58497,
+      "price_per_gb": 29.25,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001568732/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F2000GBMP600EHS",
+      "price": 58990,
+      "price_per_gb": 29.5,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657939/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5000 NVMe WDS200T4B0E",
+      "price": 59000,
+      "price_per_gb": 29.5,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001637822/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA PLUS G3 SSD-CK2.0N4PLG3J [ブラック]",
+      "price": 59980,
+      "price_per_gb": 29.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001579415/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "NM790 LNM790X002T-RNNNG",
+      "price": 61770,
+      "price_per_gb": 30.89,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001537213/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG SPECTRIX S65G SSPECTRIXS65G-2000G-CI-I",
+      "price": 62121,
+      "price_per_gb": 31.06,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782327/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN580 NVMe WDS200T3B0E",
+      "price": 62756,
+      "price_per_gb": 31.38,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001552206/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G4-2T",
+      "price": 63400,
+      "price_per_gb": 31.7,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001601575/",
+      "source": "ビックカメラ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "Crucial",
+      "name": "P3 Plus CT2000P3PSSD8",
+      "price": 63802,
+      "price_per_gb": 31.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001585550/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK2.0N4B/J [ブラック]",
+      "price": 63980,
+      "price_per_gb": 31.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724151/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M480 PRO PCIe 4.0 NVMe M.2 2TB",
+      "price": 65448,
+      "price_per_gb": 32.72,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001559684/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS200T2X0E",
+      "price": 66180,
+      "price_per_gb": 33.09,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001467995/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S70 BLADE AGAMMIXS70B-2T-CS-I",
+      "price": 66180,
+      "price_per_gb": 33.09,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782318/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA BASIC SSD-CK2.0N4B/N",
+      "price": 68280,
+      "price_per_gb": 34.14,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001719361/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE G70 PRO TM8FFH002T0C129",
+      "price": 70055,
+      "price_per_gb": 35.03,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001644356/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN770 NVMe WDS200T3X0E",
+      "price": 71000,
+      "price_per_gb": 35.5,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001424275/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 MAX ALEG-960M-2TCS-I",
+      "price": 74646,
+      "price_per_gb": 37.32,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782312/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO XT Hydro X Edition CSSD-F2000GBMP600PHXTW [ホワイト]",
+      "price": 75115,
+      "price_per_gb": 37.56,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589614/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S70 BLADE AGAMMIXS70B-2T-CS",
+      "price": 75980,
+      "price_per_gb": 37.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001351808/",
+      "source": "ソフマップ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO NH CSSD-F2000GBMP600PNH",
+      "price": 79800,
+      "price_per_gb": 39.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001493761/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX 7100 NVMe SSD SDSP71200TAN-000E0",
+      "price": 79980,
+      "price_per_gb": 39.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803486/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850 NVMe WDS200T1X0E-00AFY0",
+      "price": 80620,
+      "price_per_gb": 40.31,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001309863/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 MZ-V9V2T0B-IT",
+      "price": 80980,
+      "price_per_gb": 40.49,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793789/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 MAX ALEG-960M-2TCS",
+      "price": 82070,
+      "price_per_gb": 41.03,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001503475/",
+      "source": "ソフマップ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P2T0B-IT",
+      "price": 84500,
+      "price_per_gb": 42.25,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504089/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F2000GBMP600ENH",
+      "price": 84680,
+      "price_per_gb": 42.34,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657936/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO LPX CSSD-F2000GBMP600PLPW [ホワイト]",
+      "price": 87000,
+      "price_per_gb": 43.5,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001527314/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F2000GBMP600ECS",
+      "price": 88203,
+      "price_per_gb": 44.1,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001656659/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P2T0B-IT/EC",
+      "price": 92080,
+      "price_per_gb": 46.04,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504090/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81200TAN-000E0",
+      "price": 92741,
+      "price_per_gb": 46.37,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803481/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G4DG-2T",
+      "price": 93951,
+      "price_per_gb": 46.98,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001791216/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81200TAH-000E0",
+      "price": 98120,
+      "price_per_gb": 49.06,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803477/",
+      "source": "パソコン工房",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG GAMMIX S70 AGAMMIXS70-2T-C",
+      "price": 118465,
+      "price_per_gb": 59.23,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001340202/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "FURY Renegade SSD SFYRD/2000G",
+      "price": 125976,
+      "price_per_gb": 62.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001419558/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -28441,6 +30434,39 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 64825,
+    "median_price": 69902,
+    "min_per_gb": 32.41,
+    "median_per_gb": 34.95,
+    "n_models": 2,
+    "models": [
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS200T2XHE",
+      "price": 64825,
+      "price_per_gb": 32.41,
+      "capacity_gb": 2000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001472483/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO with Heatsink MZ-V9P2T0G-IT",
+      "price": 74980,
+      "price_per_gb": 37.49,
+      "capacity_gb": 2000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001546441/",
+      "source": "Joshin",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 64825,
     "median_price": 69902,
     "min_per_gb": 32.41,
@@ -32130,6 +34156,249 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 78980,
+    "median_price": 130608,
+    "min_per_gb": 19.75,
+    "median_per_gb": 32.65,
+    "n_models": 21,
+    "models": [
+     {
+      "maker": "KOWIN",
+      "name": "KWLNV400T04",
+      "price": 78980,
+      "price_per_gb": 19.75,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001689614/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-CREATE CLASSIC C47 TM8FFC004T0C129",
+      "price": 83738,
+      "price_per_gb": 20.93,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001648259/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44Q TM8FFD004T0C101",
+      "price": 88957,
+      "price_per_gb": 22.24,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001629289/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "SJ04KGBP44UD9N05J5",
+      "price": 88980,
+      "price_per_gb": 22.25,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001764240/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "NV3 PCIe 4.0 NVMe SSD SNV3S/4000G",
+      "price": 89780,
+      "price_per_gb": 22.45,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001689608/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "PCIe Gen 4x4 US75 SP04KGBP44US7505",
+      "price": 91980,
+      "price_per_gb": 23.0,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724859/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD Blue SN5100 NVMe WDS400T5B0E",
+      "price": 94800,
+      "price_per_gb": 23.7,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001707605/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN7100 NVMe SSD WDS400T4X0E",
+      "price": 99980,
+      "price_per_gb": 25.0,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001688296/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "MP44 TM8FPW004T0C101",
+      "price": 105873,
+      "price_per_gb": 26.47,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001568733/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 ALEG-960-4TCS-DP (M.2 2280 4TB) ドスパラ限定モデル",
+      "price": 109800,
+      "price_per_gb": 27.45,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001591846/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F4000GBMP600ECS",
+      "price": 130608,
+      "price_per_gb": 32.65,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001656660/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS400T2X0E",
+      "price": 136000,
+      "price_per_gb": 34.0,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001467996/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 960 MAX ALEG-960M-4TCS",
+      "price": 152411,
+      "price_per_gb": 38.1,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001503476/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX 7100 NVMe SSD SDSP71400TAN-000E0",
+      "price": 155970,
+      "price_per_gb": 38.99,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803487/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P4T0B-IT",
+      "price": 164800,
+      "price_per_gb": 41.2,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001570058/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO MZ-V9P4T0B-IT/EC",
+      "price": 167000,
+      "price_per_gb": 41.75,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001570059/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F4000GBMP600EHS",
+      "price": 182015,
+      "price_per_gb": 45.5,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657940/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81400TAH-000E0",
+      "price": 182820,
+      "price_per_gb": 45.7,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803478/",
+      "source": "パソコン工房",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 850X NVMe SSD SDSP81400TAN-000E0",
+      "price": 185746,
+      "price_per_gb": 46.44,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803482/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 ELITE CSSD-F4000GBMP600ENH",
+      "price": 221331,
+      "price_per_gb": 55.33,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001657937/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP600 PRO LPX CSSD-F4000GBMP600PLP",
+      "price": 228740,
+      "price_per_gb": 57.19,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001419779/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -32905,6 +35174,61 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 89311,
+    "median_price": 138990,
+    "min_per_gb": 22.33,
+    "median_per_gb": 34.75,
+    "n_models": 4,
+    "models": [
+     {
+      "maker": "Lexar",
+      "name": "NM790 with Heatsink LNM790X004T-RN9NG",
+      "price": 89311,
+      "price_per_gb": 22.33,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001574487/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN850X NVMe SSD WDS400T2XHE",
+      "price": 105000,
+      "price_per_gb": 26.25,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001648520/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO with Heatsink MZ-V9P4T0G-IT",
+      "price": 172980,
+      "price_per_gb": 43.24,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001570060/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "990 PRO with Heatsink MZ-V9P4T0G-IT/EC",
+      "price": 174727,
+      "price_per_gb": 43.68,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001570061/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 89311,
     "median_price": 138990,
     "min_per_gb": 22.33,
@@ -36436,6 +38760,228 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 29980,
+    "median_price": 44220,
+    "min_per_gb": 29.98,
+    "median_per_gb": 44.22,
+    "n_models": 19,
+    "models": [
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 970 PLUS SMAR-970PL-1TCS-DP (M.2 2280 1TB) ドスパラ限定モデル",
+      "price": 29980,
+      "price_per_gb": 29.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001766287/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G5DL-1T",
+      "price": 32980,
+      "price_per_gb": 32.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001694517/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK1.0N5G3/R",
+      "price": 33280,
+      "price_per_gb": 33.28,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001790751/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-1TCS-DP (M.2 2280 1TB) ドスパラ限定モデル",
+      "price": 33980,
+      "price_per_gb": 33.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001690626/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK1.0N5G3/J [ブラック]",
+      "price": 34800,
+      "price_per_gb": 34.8,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001768655/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-1TCS-I",
+      "price": 35900,
+      "price_per_gb": 35.9,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782323/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Lexar",
+      "name": "NM990 LNM990X001T-RNNNG",
+      "price": 36955,
+      "price_per_gb": 36.95,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793065/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA PLUS G4 SSD-CK1.0N5PLG4J [ブラック]",
+      "price": 37980,
+      "price_per_gb": 37.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001672715/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M560 PCIe 5.0 NVMe M.2 1TB",
+      "price": 37980,
+      "price_per_gb": 37.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001678771/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-1TCS",
+      "price": 44220,
+      "price_per_gb": 44.22,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724205/",
+      "source": "ソフマップ.com",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO MZ-VAP1T0B-IT",
+      "price": 44430,
+      "price_per_gb": 44.43,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001681632/",
+      "source": "ヨドバシ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO with AIR COOLER CSSD-F1000GBMP700PRO [BLACK]",
+      "price": 44988,
+      "price_per_gb": 44.99,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589844/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "Professional NM1090 PRO LNM109P001T-RNNNG",
+      "price": 45315,
+      "price_per_gb": 45.31,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793068/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82100TAN-000E0",
+      "price": 53579,
+      "price_per_gb": 53.58,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803473/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Crucial",
+      "name": "T710 CT1000T710SSD8-JP",
+      "price": 54200,
+      "price_per_gb": 54.2,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001700247/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE Z540 TM8FF1001T0C129",
+      "price": 54867,
+      "price_per_gb": 54.87,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001596270/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82100TAH-000E0",
+      "price": 56980,
+      "price_per_gb": 56.98,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803471/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO CSSD-F1000GBMP700PNH [BLACK]",
+      "price": 58186,
+      "price_per_gb": 58.19,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589842/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO XT CSSD-F10GBMP700PXNH",
+      "price": 121733,
+      "price_per_gb": 121.73,
+      "capacity_gb": 1000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001719054/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -37134,6 +39680,50 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 40180,
+    "median_price": 45000,
+    "min_per_gb": 40.18,
+    "median_per_gb": 45.0,
+    "n_models": 3,
+    "models": [
+     {
+      "maker": "WD",
+      "name": "WD_Black SN8100 NVMe SSD WDS100T1XHM",
+      "price": 40180,
+      "price_per_gb": 40.18,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001722178/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Crucial",
+      "name": "T700 CT1000T700SSD5JP",
+      "price": 45000,
+      "price_per_gb": 45.0,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001544080/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO with Heatsink MZ-VAP1T0C-IT",
+      "price": 53980,
+      "price_per_gb": 53.98,
+      "capacity_gb": 1000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001681635/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 40180,
     "median_price": 45000,
     "min_per_gb": 40.18,
@@ -40649,6 +43239,250 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 53980,
+    "median_price": 65400,
+    "min_per_gb": 26.99,
+    "median_per_gb": 32.7,
+    "n_models": 21,
+    "models": [
+     {
+      "maker": "Lexar",
+      "name": "NM990 LNM990X002T-RNNNG",
+      "price": 53980,
+      "price_per_gb": 26.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793066/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-2TCS-DP (M.2 2280 2TB) ドスパラ限定モデル",
+      "price": 55980,
+      "price_per_gb": 27.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001690627/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 970 PLUS SMAR-970PL-2TCS-DP (M.2 2280 2TB) ドスパラ限定モデル",
+      "price": 56980,
+      "price_per_gb": 28.49,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001766288/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "MSI",
+      "name": "SPATIUM M560 PCIe 5.0 NVMe M.2 2TB",
+      "price": 58800,
+      "price_per_gb": 29.4,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001683196/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE GA PRO TM8FFJ002T0C129",
+      "price": 59929,
+      "price_per_gb": 29.96,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001770383/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO CSSD-F2000GBMP700PNH [BLACK]",
+      "price": 60990,
+      "price_per_gb": 30.5,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589843/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-2TCS",
+      "price": 61800,
+      "price_per_gb": 30.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724206/",
+      "source": "ソフマップ.com",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK2.0N5G3/R",
+      "price": 62080,
+      "price_per_gb": 31.04,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001790752/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "Professional NM1090 PRO LNM109P002T-RNNNG",
+      "price": 64706,
+      "price_per_gb": 32.35,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793069/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G5DL-2T",
+      "price": 65188,
+      "price_per_gb": 32.59,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001694518/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-2TCS-I",
+      "price": 65400,
+      "price_per_gb": 32.7,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001782324/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK2.0N5G3/J [ブラック]",
+      "price": 69800,
+      "price_per_gb": 34.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001768656/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA PLUS G4 SSD-CK2.0N5PLG4J [ブラック]",
+      "price": 69980,
+      "price_per_gb": 34.99,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001672716/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA PLUS G4 SSD-CK2.0N5PLG4N",
+      "price": 78780,
+      "price_per_gb": 39.39,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001677649/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN8100 NVMe SSD WDS200T1X0M",
+      "price": 91440,
+      "price_per_gb": 45.72,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001694021/",
+      "source": "ソフマップ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82200TAN-000E0",
+      "price": 92440,
+      "price_per_gb": 46.22,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803474/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO Hydro X Series CSSD-F2000GBMP700PHX [BLACK]",
+      "price": 97766,
+      "price_per_gb": 48.88,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589846/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO MZ-VAP2T0B-IT",
+      "price": 99800,
+      "price_per_gb": 49.9,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001681633/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82200TAH-000E0",
+      "price": 105120,
+      "price_per_gb": 52.56,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001806684/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "PNY",
+      "name": "XLR8 CS3150 M280CS3150HSW-2TB-RB",
+      "price": 105319,
+      "price_per_gb": 52.66,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001614720/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO with AIR COOLER CSSD-F2000GBMP700PRO [BLACK]",
+      "price": 120071,
+      "price_per_gb": 60.04,
+      "capacity_gb": 2000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001589845/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": []
@@ -41128,6 +43962,39 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 79180,
+    "median_price": 93580,
+    "min_per_gb": 39.59,
+    "median_per_gb": 46.79,
+    "n_models": 2,
+    "models": [
+     {
+      "maker": "WD",
+      "name": "WD_Black SN8100 NVMe SSD WDS200T1XHM",
+      "price": 79180,
+      "price_per_gb": 39.59,
+      "capacity_gb": 2000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001722179/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO with Heatsink MZ-VAP2T0C-IT",
+      "price": 107980,
+      "price_per_gb": 53.99,
+      "capacity_gb": 2000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001681636/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 79180,
     "median_price": 93580,
     "min_per_gb": 39.59,
@@ -43550,6 +46417,172 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 89980,
+    "median_price": 163227,
+    "min_per_gb": 22.5,
+    "median_per_gb": 40.8,
+    "n_models": 14,
+    "models": [
+     {
+      "maker": "Lexar",
+      "name": "NM990 LNM990X004T-RNNNG",
+      "price": 89980,
+      "price_per_gb": 22.5,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793067/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "Professional NM1090 PRO LNM109P004T-RNNNG",
+      "price": 92980,
+      "price_per_gb": 23.25,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001793070/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-4TCS-DP (M.2 2280 4TB) ドスパラ限定モデル",
+      "price": 109980,
+      "price_per_gb": 27.5,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001690628/",
+      "source": "ドスパラ",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO with Air Cooler CSSD-F4000GBMP700PRO [BLACK]",
+      "price": 123411,
+      "price_per_gb": 30.85,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001614533/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 ELITE CSSD-F4000GBMP700ENH",
+      "price": 132624,
+      "price_per_gb": 33.16,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001714688/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN8100 NVMe SSD WDS400T1X0M",
+      "price": 139980,
+      "price_per_gb": 34.99,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001694022/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO CSSD-F4000GBMP700PNH",
+      "price": 141974,
+      "price_per_gb": 35.49,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001614532/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK4.0N5G3/R",
+      "price": 184480,
+      "price_per_gb": 46.12,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001790750/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82400TAN-000E0",
+      "price": 193520,
+      "price_per_gb": 48.38,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803475/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "XPG MARS 980 BLADE SMAR-980B-4TCS",
+      "price": 200679,
+      "price_per_gb": 50.17,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001763425/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Optimus GX PRO 8100 NVMe SSD SDSP82400TAH-000E0",
+      "price": 201520,
+      "price_per_gb": 50.38,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001803472/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Kioxia",
+      "name": "EXCERIA G3 SSD-CK4.0N5G3/J [ブラック]",
+      "price": 203980,
+      "price_per_gb": 50.99,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001791915/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO MZ-VAP4T0B-IT",
+      "price": 206980,
+      "price_per_gb": 51.74,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001681634/",
+      "source": "Joshin",
+      "release_date": ""
+     },
+     {
+      "maker": "Corsair",
+      "name": "MP700 PRO XT CSSD-F40GBMP700PXNH",
+      "price": 434530,
+      "price_per_gb": 108.63,
+      "capacity_gb": 4000,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001719590/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -44204,6 +47237,50 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 151971,
+    "median_price": 180070,
+    "min_per_gb": 37.99,
+    "median_per_gb": 45.02,
+    "n_models": 3,
+    "models": [
+     {
+      "maker": "Corsair",
+      "name": "MP700 ELITE with Heatsink CSSD-F4000GBMP700EHS",
+      "price": 151971,
+      "price_per_gb": 37.99,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001714687/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "WD",
+      "name": "WD_Black SN8100 NVMe SSD WDS400T1XHM",
+      "price": 180070,
+      "price_per_gb": 45.02,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001722180/",
+      "source": "ヨドバシ.com",
+      "release_date": ""
+     },
+     {
+      "maker": "Samsung",
+      "name": "9100 PRO with Heatsink MZ-VAP4T0C-IT",
+      "price": 212980,
+      "price_per_gb": 53.24,
+      "capacity_gb": 4000,
+      "heatsink": true,
+      "url": "https://kakaku.com/item/K0001681637/",
+      "source": "Joshin",
+      "release_date": "",
+      "ps5": true
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 151971,
     "median_price": 180070,
     "min_per_gb": 37.99,
@@ -45420,6 +48497,82 @@
       "source": "Amazon.co.jp",
       "release_date": "",
       "price_per_tb": 281395,
+      "form": "U.2 / U.3"
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 32055,
+    "median_price": 114920,
+    "min_per_gb": 35.91,
+    "median_per_gb": 40.07,
+    "n_models": 5,
+    "min_per_tb": 35912,
+    "models": [
+     {
+      "maker": "Solidigm",
+      "name": "D7-P5620 SSDPF2KE032T1N1",
+      "price": 114920,
+      "price_per_gb": 35.91,
+      "capacity_gb": 3200.0,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001463330/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 35912,
+      "form": "U.2 / U.3"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D7-P5620 SSDPF2KE064T1N1",
+      "price": 238339,
+      "price_per_gb": 37.24,
+      "capacity_gb": 6400.0,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001463331/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 37240,
+      "form": "U.2 / U.3"
+     },
+     {
+      "maker": "Intel",
+      "name": "DC P3600 Series SSDPE2ME800G401",
+      "price": 32055,
+      "price_per_gb": 40.07,
+      "capacity_gb": 800.0,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000886966/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 40069,
+      "form": "U.2 / U.3"
+     },
+     {
+      "maker": "Intel",
+      "name": "DC P3600 Series SSDPE2ME012T401",
+      "price": 70250,
+      "price_per_gb": 58.54,
+      "capacity_gb": 1200.0,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000877096/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 58542,
+      "form": "U.2 / U.3"
+     },
+     {
+      "maker": "SanDisk",
+      "name": "Ultrastar DC SN655 WUS5EA176ESP7E1",
+      "price": 2117892,
+      "price_per_gb": 275.77,
+      "capacity_gb": 7680.0,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001576943/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 275767,
       "form": "U.2 / U.3"
      }
     ]
@@ -47691,6 +50844,147 @@
       "form": "SATA 2.5インチ"
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 101610,
+    "median_price": 289914,
+    "min_per_gb": 26.46,
+    "median_per_gb": 117.42,
+    "n_models": 10,
+    "min_per_tb": 26461,
+    "models": [
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4510 SSDSC2KB038T801",
+      "price": 101610,
+      "price_per_gb": 26.46,
+      "capacity_gb": 3840,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001083154/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 26461,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4520 SSDSC2KB038TZ01",
+      "price": 113245,
+      "price_per_gb": 29.49,
+      "capacity_gb": 3840,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001402461/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 29491,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Kingston",
+      "name": "Data Center DC600M SEDC600M/7680G",
+      "price": 623740,
+      "price_per_gb": 81.22,
+      "capacity_gb": 7680,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001541100/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 81216,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4520 SSDSC2KB038TZ1Z",
+      "price": 327296,
+      "price_per_gb": 85.23,
+      "capacity_gb": 3840,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001662712/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 85233,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4610 SSDSC2KG019T801",
+      "price": 213711,
+      "price_per_gb": 111.31,
+      "capacity_gb": 1920,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001105353/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 111308,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Kingston",
+      "name": "Data Center DC600M SEDC600M/3840G",
+      "price": 474338,
+      "price_per_gb": 123.53,
+      "capacity_gb": 3840,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001541101/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 123526,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4520 SSDSC2KB019TZ1Z",
+      "price": 255754,
+      "price_per_gb": 133.21,
+      "capacity_gb": 1920,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001662711/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 133205,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4620 SSDSC2KG038TZ1Z",
+      "price": 532722,
+      "price_per_gb": 138.73,
+      "capacity_gb": 3840,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001662707/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 138730,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Kingston",
+      "name": "Data Center DC600M SEDC600M/1920G",
+      "price": 272137,
+      "price_per_gb": 141.74,
+      "capacity_gb": 1920,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001541102/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 141738,
+      "form": "SATA 2.5インチ"
+     },
+     {
+      "maker": "Solidigm",
+      "name": "D3-S4620 SSDSC2KG019TZ1Z",
+      "price": 307692,
+      "price_per_gb": 160.26,
+      "capacity_gb": 1920,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001662706/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "price_per_tb": 160256,
+      "form": "SATA 2.5インチ"
+     }
+    ]
    }
   ],
   "events": []
@@ -49501,6 +52795,170 @@
    },
    {
     "date": "2026-11-10 09:00",
+    "min_price": 6280,
+    "median_price": 13505,
+    "min_per_gb": 24.53,
+    "median_per_gb": 52.75,
+    "n_models": 14,
+    "models": [
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-256GT-R",
+      "price": 6280,
+      "price_per_gb": 24.53,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001489378/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "NS100 LNS100-256RB [グレー]",
+      "price": 6580,
+      "price_per_gb": 25.7,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001344497/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "Ace A55 SP256GBSS3A55S25",
+      "price": 7182,
+      "price_per_gb": 28.05,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001214308/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi550 49351-J",
+      "price": 8980,
+      "price_per_gb": 35.08,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001672256/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "KOWIN",
+      "name": "KWCAS100256",
+      "price": 9480,
+      "price_per_gb": 37.03,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001689609/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "CX2 T253X6256G0C101",
+      "price": 11721,
+      "price_per_gb": 45.79,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001598154/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "旭東エレクトロニクス",
+      "name": "SUNEAST SE800S25LT-256G",
+      "price": 12511,
+      "price_per_gb": 48.87,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504179/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Crucial",
+      "name": "RealSSD C300 CTFDDAC256MAG-1G1",
+      "price": 14500,
+      "price_per_gb": 56.64,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000093107/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "GX2 T253X2256G0C101",
+      "price": 15142,
+      "price_per_gb": 59.15,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001586020/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-IS25S6-256G",
+      "price": 18360,
+      "price_per_gb": 71.72,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001796779/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "KC600 SSD SKC600/256G",
+      "price": 20185,
+      "price_per_gb": 78.85,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001221976/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "SSDNow KC400 Drive SKC400S37/256G",
+      "price": 22159,
+      "price_per_gb": 86.56,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000950421/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU800 ASU800SS-256GT-C",
+      "price": 24398,
+      "price_per_gb": 95.3,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000903568/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "SSDNow KC400 Drive SKC400S3B7A/256G",
+      "price": 168880,
+      "price_per_gb": 659.69,
+      "capacity_gb": 256,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001002934/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
     "min_price": 6280,
     "median_price": 13505,
     "min_per_gb": 24.53,
@@ -51565,6 +55023,159 @@
       "release_date": ""
      }
     ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 10800,
+    "median_price": 15980,
+    "min_per_gb": 21.09,
+    "median_per_gb": 31.21,
+    "n_models": 13,
+    "models": [
+     {
+      "maker": "ADATA",
+      "name": "Ultimate SU650 ASU650SS-512GT-R",
+      "price": 10800,
+      "price_per_gb": 21.09,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001489379/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Lexar",
+      "name": "NS100 LNS100-512RB [グレー]",
+      "price": 11480,
+      "price_per_gb": 22.42,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001344496/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "Ace A55 SP512GBSS3A55S25",
+      "price": 11640,
+      "price_per_gb": 22.73,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001214309/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi550 49352-J",
+      "price": 11655,
+      "price_per_gb": 22.76,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001672257/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "Ace A58 SP512GBSS3A58A25",
+      "price": 12980,
+      "price_per_gb": 25.35,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001724860/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE VULCAN Z T253TZ512G0C101 [ブラック]",
+      "price": 14170,
+      "price_per_gb": 27.68,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001554861/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "KOWIN",
+      "name": "KWCAS100512",
+      "price": 15980,
+      "price_per_gb": 31.21,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001689610/",
+      "source": "パソコン工房",
+      "release_date": ""
+     },
+     {
+      "maker": "旭東エレクトロニクス",
+      "name": "SUNEAST SE800S25LT-512G",
+      "price": 16047,
+      "price_per_gb": 31.34,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001504180/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Silicon Power",
+      "name": "Ace A55 SPJ512GBSS3A55B",
+      "price": 16300,
+      "price_per_gb": 31.84,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001575869/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "CX2 T253X6512G0C101",
+      "price": 19138,
+      "price_per_gb": 37.38,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001598153/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-IS25S6-512G",
+      "price": 28170,
+      "price_per_gb": 55.02,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001796780/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Team",
+      "name": "T-FORCE VULCAN G T253TG512G3C301 [ブラック]",
+      "price": 50685,
+      "price_per_gb": 98.99,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001386861/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "SSDNow KC400 Drive SKC400S37/512G",
+      "price": 57942,
+      "price_per_gb": 113.17,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0000950422/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
    }
   ],
   "events": [
@@ -52613,6 +56224,83 @@
       "url": "https://kakaku.com/item/K0001778650/",
       "source": "TSUKUMO",
       "release_date": ""
+     },
+     {
+      "maker": "旭東エレクトロニクス",
+      "name": "SUNEAST GOLD SERIES 720 SE-MN4512G2LG2G",
+      "price": 20710,
+      "price_per_gb": 40.45,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001800170/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "ADATA",
+      "name": "LEGEND 900 SLEG-900-512GCS",
+      "price": 26314,
+      "price_per_gb": 51.39,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001558612/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Verbatim",
+      "name": "Vi5000 31825-J",
+      "price": 27500,
+      "price_per_gb": 53.71,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001682265/",
+      "source": "ドスパラ",
+      "release_date": ""
+     },
+     {
+      "maker": "Princeton",
+      "name": "PHD-ISM2G4DG-512",
+      "price": 27800,
+      "price_per_gb": 54.3,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001791214/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     },
+     {
+      "maker": "Kingston",
+      "name": "KC3000 PCIe 4.0 NVMe M.2 SSD SKC3000S/512G",
+      "price": 34000,
+      "price_per_gb": 66.41,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001413490/",
+      "source": "Amazon.co.jp",
+      "release_date": ""
+     }
+    ]
+   },
+   {
+    "date": "2026-11-10 16:00",
+    "min_price": 16880,
+    "median_price": 26907,
+    "min_per_gb": 32.97,
+    "median_per_gb": 52.55,
+    "n_models": 6,
+    "models": [
+     {
+      "maker": "Team",
+      "name": "T-FORCE G50 TM8FFE512G0C129",
+      "price": 16880,
+      "price_per_gb": 32.97,
+      "capacity_gb": 512,
+      "heatsink": false,
+      "url": "https://kakaku.com/item/K0001780172/",
+      "source": "Amazon.co.jp",
+      "release_date": "",
+      "ps5": true
      },
      {
       "maker": "旭東エレクトロニクス",
