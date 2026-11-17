@@ -29,6 +29,22 @@
   .section-gap { margin-top:36px; }
 
   /* Pick up */
+  .pickup-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; cursor:pointer; user-select:none;
+    background:var(--white); border:1px solid var(--border); border-radius:8px; padding:8px 12px; box-shadow:var(--shadow);
+    margin-bottom:8px; }
+  .pickup-head:hover { background:#f9fafb; }
+  .pickup-head:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .pickup-head.collapsed { margin-bottom:28px; }
+  .pickup-head .caret { font-size:10px; color:var(--muted); width:12px; }
+  .pickup-head small { margin-left:auto !important; }
+  .pickup-count { font-size:11px; font-weight:700; text-transform:none; letter-spacing:0; color:var(--accent);
+    background:#eff6ff; padding:2px 10px; border-radius:20px; }
+  .pickup-list[hidden] { display:none; }
+  .pickup-older { display:flex; flex-direction:column; gap:6px; }
+  .pickup-older[hidden] { display:none; }
+  .pickup-more { align-self:flex-start; border:1px solid var(--border); background:var(--white); color:var(--accent);
+    font-size:12px; font-weight:700; padding:6px 14px; border-radius:20px; cursor:pointer; }
+  .pickup-more:hover { background:#eff6ff; }
   .pickup-list { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
   .pickup-item { background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px;
     display:flex; align-items:center; gap:12px; box-shadow:var(--shadow); }
@@ -152,7 +168,11 @@
 
 <div class="container">
 
-  <div class="section-label">⚡ Pick Up — 直近7日の変動 / 新着
+  <div class="section-label pickup-head" id="pickup-head" role="button" tabindex="0" aria-expanded="true"
+       title="クリックで開閉">
+    <span class="caret" id="pickup-caret">▼</span>
+    <span>⚡ Pick Up — 直近7日の変動 / 新着</span>
+    <span class="pickup-count" id="pickup-count"></span>
     <small id="alert-note"></small></div>
   <div class="pickup-list" id="pickup-list"></div>
 
@@ -181,8 +201,8 @@ const PRICES_DATA = __PRICES_DATA__;
 
 // Must match ALERT_PCT / ALERT_PCT_7D in scraper.py
 const ALERT_PCT = 0.05, ALERT_PCT_7D = 0.10;
-const SATA_CAPS = ["240G", "480G", "960G"];
-const M2_CAPS   = ["500G", "1TB", "2TB", "4TB"];
+const SATA_CAPS = ["240G", "256G", "480G", "512G", "960G"];
+const M2_CAPS   = ["256G", "500G", "512G", "1TB", "2TB", "4TB"];
 const M2_ROWS   = [
   { group:"Gen4", hs:false, label:"Gen4" }, { group:"Gen4", hs:true, label:"Gen4", tag:"ヒートシンク付" },
   { group:"Gen5", hs:false, label:"Gen5" }, { group:"Gen5", hs:true, label:"Gen5", tag:"ヒートシンク付" },
@@ -231,7 +251,27 @@ function prevModelPrice(history, entryIdx, url){
   if (dates.length) document.getElementById("last-updated").textContent = `最終更新: ${dates[dates.length-1]}`;
   document.querySelectorAll("#tabs .tab").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
   renderPickup(); renderMatrix(); renderSegments(); renderEnterprise();
+  initPickupToggle();
 })();
+
+// Pick Up collapse / expand (state remembered per browser; works without storage too)
+function initPickupToggle(){
+  const head = document.getElementById("pickup-head"), list = document.getElementById("pickup-list");
+  const caret = document.getElementById("pickup-caret");
+  function apply(collapsed, save){
+    head.classList.toggle("collapsed", collapsed);
+    list.hidden = collapsed;
+    caret.textContent = collapsed ? "▶" : "▼";
+    head.setAttribute("aria-expanded", String(!collapsed));
+    if (save) { try { localStorage.setItem("ssd_pickup_collapsed", collapsed ? "1" : "0"); } catch(e) {} }
+  }
+  let collapsed = false;
+  try { collapsed = localStorage.getItem("ssd_pickup_collapsed") === "1"; } catch(e) {}
+  apply(collapsed, false);
+  const toggle = () => apply(!head.classList.contains("collapsed"), true);
+  head.addEventListener("click", toggle);
+  head.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+}
 
 function setTab(tab){
   currentTab = tab;
@@ -240,6 +280,35 @@ function setTab(tab){
 }
 
 // ── Pick up ──────────────────────────────────────────────────────────────
+function pickupItemHtml(ev){
+  const seg = escHtml(segLabel(ev.segment));
+  if (ev.type === "new_product") {
+    const nm = `${escHtml(ev.maker)} ${escHtml(ev.name)}`;
+    const nmHtml = ev.url ? `<a href="${ev.url}" target="_blank" rel="noopener" style="color:inherit">${nm}</a>` : nm;
+    return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+      <span class="pickup-text"><b>${seg}</b> — ${nmHtml} ${yen(ev.price)}</span>
+      <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+  }
+  if (ev.type === "new_model") {
+    return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
+      <span class="pickup-text"><b>${seg}</b> が初めて検出 — ${yen(ev.current)}${ev.unit||""}</span>
+      <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
+  }
+  const up = ev.current > ev.prev, is7 = ev.type === "price_change_7d";
+  return `<div class="pickup-item ${up?"up":"down"}"><span class="pickup-icon">${up?"📈":"📉"}</span>
+    <span class="pickup-text"><b>${seg}</b>  ${yen(ev.prev)} → ${yen(ev.current)}${ev.unit||""}</span>
+    <span class="pickup-date">${ev.date}</span>
+    ${is7 ? `<span class="pickup-badge badge-7d">7日</span>` : ""}
+    <span class="pickup-badge ${up?"badge-up":"badge-down"}">${ev.change}</span></div>`;
+}
+function pickupBreakdown(arr){
+  const isChg = e => e.type==="price_change" || e.type==="price_change_7d";
+  const up = arr.filter(e => isChg(e) && e.current > e.prev).length;
+  const down = arr.filter(e => isChg(e) && e.current < e.prev).length;
+  const nw = arr.filter(e => e.type==="new_product" || e.type==="new_model").length;
+  return `${arr.length}件（値上がり ${up} ／ 値下がり ${down} ／ 新着 ${nw}）`;
+}
+// Shows only the most recent day that has items; the rest of the last 7 days sits behind a button.
 function renderPickup(){
   const list = document.getElementById("pickup-list");
   const cut = new Date(); cut.setDate(cut.getDate() - 7);
@@ -253,29 +322,26 @@ function renderPickup(){
         items.push({type:"new_product", segment:k, date:m.release_date, maker:m.maker, name:m.name, price:m.price, url:m.url});
   }
   items.sort((a,b) => b.date.localeCompare(a.date));
-  if (!items.length) { list.innerHTML = `<p class="no-pickup">直近7日間に有意な価格変動・新着商品はありません</p>`; return; }
+  const countEl = document.getElementById("pickup-count");
+  if (!items.length) {
+    countEl.textContent = "0件";
+    list.innerHTML = `<p class="no-pickup">直近7日間に有意な価格変動・新着商品はありません</p>`; return;
+  }
+  const dayOf = e => e.date.slice(0,10);
+  const latestDay = dayOf(items[0]);
+  const latest = items.filter(e => dayOf(e) === latestDay);
+  const older  = items.filter(e => dayOf(e) !== latestDay);
+  countEl.textContent = `最新 ${latestDay.slice(5)}：${pickupBreakdown(latest)}` + (older.length ? ` ／ 7日合計 ${items.length}件` : "");
 
-  list.innerHTML = items.map(ev => {
-    const seg = escHtml(segLabel(ev.segment));
-    if (ev.type === "new_product") {
-      const nm = `${escHtml(ev.maker)} ${escHtml(ev.name)}`;
-      const nmHtml = ev.url ? `<a href="${ev.url}" target="_blank" rel="noopener" style="color:inherit">${nm}</a>` : nm;
-      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
-        <span class="pickup-text"><b>${seg}</b> — ${nmHtml} ${yen(ev.price)}</span>
-        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
-    }
-    if (ev.type === "new_model") {
-      return `<div class="pickup-item new"><span class="pickup-icon">🆕</span>
-        <span class="pickup-text"><b>${seg}</b> が初めて検出 — ${yen(ev.current)}${ev.unit||""}</span>
-        <span class="pickup-date">${ev.date}</span><span class="pickup-badge badge-new">NEW</span></div>`;
-    }
-    const up = ev.current > ev.prev, is7 = ev.type === "price_change_7d";
-    return `<div class="pickup-item ${up?"up":"down"}"><span class="pickup-icon">${up?"📈":"📉"}</span>
-      <span class="pickup-text"><b>${seg}</b>  ${yen(ev.prev)} → ${yen(ev.current)}${ev.unit||""}</span>
-      <span class="pickup-date">${ev.date}</span>
-      ${is7 ? `<span class="pickup-badge badge-7d">7日</span>` : ""}
-      <span class="pickup-badge ${up?"badge-up":"badge-down"}">${ev.change}</span></div>`;
-  }).join("");
+  list.innerHTML = latest.map(pickupItemHtml).join("") + (older.length
+    ? `<button type="button" class="pickup-more" id="pickup-more">▼ それ以前（7日以内）の ${older.length}件を表示</button>
+       <div class="pickup-older" id="pickup-older" hidden>${older.map(pickupItemHtml).join("")}</div>` : "");
+  const more = document.getElementById("pickup-more");
+  if (more) more.addEventListener("click", () => {
+    const box = document.getElementById("pickup-older");
+    box.hidden = !box.hidden;
+    more.textContent = box.hidden ? `▼ それ以前（7日以内）の ${older.length}件を表示` : `▲ それ以前の表示を閉じる`;
+  });
 }
 
 // ── Matrix ───────────────────────────────────────────────────────────────
